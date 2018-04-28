@@ -4,14 +4,13 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 public class Country {
     private String code;
     private String name;
-    private Serializable continent;
+    private String continent;
     private String region;
     private Double surfaceArea;
     private Short indepYear;
@@ -42,11 +41,11 @@ public class Country {
 
     @Basic
     @Column(name = "continent")
-    public Serializable getContinent() {
+    public String getContinent() {
         return continent;
     }
 
-    public void setContinent(Serializable continent) {
+    public void setContinent(String continent) {
         this.continent = continent;
     }
 

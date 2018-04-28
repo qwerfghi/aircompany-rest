@@ -4,7 +4,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
@@ -12,7 +11,7 @@ public class User {
     private Integer userId;
     private String username;
     private String password;
-    private Serializable userRole;
+    private String userRole;
     private Integer personId;
 
     @Id
@@ -47,11 +46,11 @@ public class User {
 
     @Basic
     @Column(name = "user_role")
-    public Serializable getUserRole() {
+    public String getUserRole() {
         return userRole;
     }
 
-    public void setUserRole(Serializable userRole) {
+    public void setUserRole(String userRole) {
         this.userRole = userRole;
     }
 

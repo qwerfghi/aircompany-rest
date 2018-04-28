@@ -1,7 +1,6 @@
 package com.qwerfghi.aircompany.entity.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
@@ -10,7 +9,7 @@ import java.util.Objects;
 public class CountryLanguage {
     private String countryCode;
     private String language;
-    private Serializable isOfficial;
+    private String isOfficial;
     private Double percentage;
 
     @Id
@@ -35,11 +34,11 @@ public class CountryLanguage {
 
     @Basic
     @Column(name = "isOfficial")
-    public Serializable getIsOfficial() {
+    public String getIsOfficial() {
         return isOfficial;
     }
 
-    public void setIsOfficial(Serializable isOfficial) {
+    public void setIsOfficial(String isOfficial) {
         this.isOfficial = isOfficial;
     }
 

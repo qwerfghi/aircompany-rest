@@ -1,4 +1,9 @@
 package com.qwerfghi.aircompany.repository;
 
-public interface TeamRepository {
+import com.qwerfghi.aircompany.entity.model.Team;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface TeamRepository extends JpaRepository<Team, Integer> {
 }

@@ -4,7 +4,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
 
@@ -13,7 +12,7 @@ public class Passenger {
     private Integer passengerId;
     private String name;
     private String lastName;
-    private Serializable sex;
+    private String sex;
     private Date birthdate;
     private String passport;
     private String phone;
@@ -52,11 +51,11 @@ public class Passenger {
 
     @Basic
     @Column(name = "sex")
-    public Serializable getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Serializable sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 

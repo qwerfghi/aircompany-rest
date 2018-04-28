@@ -4,7 +4,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
 
@@ -17,7 +16,7 @@ public class Migration {
     private Date arrivalDate;
     private Integer planeId;
     private Integer cost;
-    private Serializable clazz;
+    private String clazz;
     private Integer placeNumber;
 
     @Id
@@ -92,11 +91,11 @@ public class Migration {
 
     @Basic
     @Column(name = "class")
-    public Serializable getClazz() {
+    public String getClazz() {
         return clazz;
     }
 
-    public void setClazz(Serializable clazz) {
+    public void setClazz(String clazz) {
         this.clazz = clazz;
     }
 
