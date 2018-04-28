@@ -151,7 +151,6 @@ public class Person {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(personId, name, lastName, sex, birthdate, passport, phone, email, workRecordBookNumber, countryCode, addressId);
     }
 }
