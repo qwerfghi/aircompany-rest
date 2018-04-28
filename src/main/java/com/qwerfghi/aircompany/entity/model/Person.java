@@ -1,13 +1,10 @@
 package com.qwerfghi.aircompany.entity.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
-import java.util.Objects;
 
 @Entity
+@Table(name = "person", schema = "aircompany")
 public class Person {
     private Integer personId;
     private String name;
@@ -19,9 +16,10 @@ public class Person {
     private String email;
     private Integer workRecordBookNumber;
     private String countryCode;
-    private Integer addressId;
+    private Address address;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "person_id")
     public Integer getPersonId() {
         return personId;
@@ -121,36 +119,13 @@ public class Person {
         this.countryCode = countryCode;
     }
 
-    @Basic
-    @Column(name = "address_id")
-    public Integer getAddressId() {
-        return addressId;
+    @OneToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "address_id", foreignKey = @ForeignKey(name = "person_address_fk"))
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddressId(Integer addressId) {
-        this.addressId = addressId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return Objects.equals(personId, person.personId) &&
-                Objects.equals(name, person.name) &&
-                Objects.equals(lastName, person.lastName) &&
-                Objects.equals(sex, person.sex) &&
-                Objects.equals(birthdate, person.birthdate) &&
-                Objects.equals(passport, person.passport) &&
-                Objects.equals(phone, person.phone) &&
-                Objects.equals(email, person.email) &&
-                Objects.equals(workRecordBookNumber, person.workRecordBookNumber) &&
-                Objects.equals(countryCode, person.countryCode) &&
-                Objects.equals(addressId, person.addressId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(personId, name, lastName, sex, birthdate, passport, phone, email, workRecordBookNumber, countryCode, addressId);
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

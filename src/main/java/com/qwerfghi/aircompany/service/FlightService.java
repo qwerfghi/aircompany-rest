@@ -1,6 +1,6 @@
 package com.qwerfghi.aircompany.service;
 
-import com.qwerfghi.aircompany.entity.model.Flight;
+import com.qwerfghi.aircompany.entity.dto.FlightDTO;
 import com.qwerfghi.aircompany.repository.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,24 +19,24 @@ public class FlightService {
     }
 
     @Transactional(readOnly = true)
-    public Flight getFlightById(int id) {
+    public FlightDTO getFlightById(int id) {
         return flightRepository.findOne(id);
     }
 
     @Transactional(readOnly = true)
-    public List<Flight> getAllFlights() {
+    public List<FlightDTO> getAllFlights() {
         return flightRepository.findAll();
     }
 
-    public void addFlight(Flight flight) {
-        flightRepository.save(flight);
+    public void addFlight(FlightDTO flightDTO) {
+        flightRepository.save(flightDTO);
     }
 
     public void deleteFlight(int id) {
         flightRepository.delete(id);
     }
 
-    public void updateFlight(Flight flight) {
-        flightRepository.save(flight);
+    public void updateFlight(FlightDTO flightDTO) {
+        flightRepository.save(flightDTO);
     }
 }

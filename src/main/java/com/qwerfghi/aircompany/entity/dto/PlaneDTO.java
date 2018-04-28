@@ -1,13 +1,11 @@
-package com.qwerfghi.aircompany.entity.model;
+package com.qwerfghi.aircompany.entity.dto;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Plane {
+@Table(name = "plane", schema = "aircompany")
+public class PlaneDTO {
     private Integer planeId;
     private String model;
     private Integer blassCount;
@@ -15,6 +13,7 @@ public class Plane {
     private Integer teamId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "plane_id")
     public Integer getPlaneId() {
         return planeId;
@@ -68,12 +67,12 @@ public class Plane {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Plane plane = (Plane) o;
-        return Objects.equals(planeId, plane.planeId) &&
-                Objects.equals(model, plane.model) &&
-                Objects.equals(blassCount, plane.blassCount) &&
-                Objects.equals(eclassCount, plane.eclassCount) &&
-                Objects.equals(teamId, plane.teamId);
+        PlaneDTO planeDTO = (PlaneDTO) o;
+        return Objects.equals(planeId, planeDTO.planeId) &&
+                Objects.equals(model, planeDTO.model) &&
+                Objects.equals(blassCount, planeDTO.blassCount) &&
+                Objects.equals(eclassCount, planeDTO.eclassCount) &&
+                Objects.equals(teamId, planeDTO.teamId);
     }
 
     @Override

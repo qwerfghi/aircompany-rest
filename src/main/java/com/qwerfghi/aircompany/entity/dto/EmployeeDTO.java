@@ -1,13 +1,11 @@
-package com.qwerfghi.aircompany.entity.model;
+package com.qwerfghi.aircompany.entity.dto;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Employee {
+@Table(name = "employee", schema = "aircompany")
+public class EmployeeDTO {
     private Integer employeeId;
     private String position;
     private String department;
@@ -15,6 +13,7 @@ public class Employee {
     private Integer personId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "employee_id")
     public Integer getEmployeeId() {
         return employeeId;
@@ -68,12 +67,12 @@ public class Employee {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
-        return Objects.equals(employeeId, employee.employeeId) &&
-                Objects.equals(position, employee.position) &&
-                Objects.equals(department, employee.department) &&
-                Objects.equals(salary, employee.salary) &&
-                Objects.equals(personId, employee.personId);
+        EmployeeDTO employeeDTO = (EmployeeDTO) o;
+        return Objects.equals(employeeId, employeeDTO.employeeId) &&
+                Objects.equals(position, employeeDTO.position) &&
+                Objects.equals(department, employeeDTO.department) &&
+                Objects.equals(salary, employeeDTO.salary) &&
+                Objects.equals(personId, employeeDTO.personId);
     }
 
     @Override

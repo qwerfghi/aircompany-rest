@@ -1,9 +1,9 @@
 package com.qwerfghi.aircompany.repository;
 
-import com.qwerfghi.aircompany.entity.dto.TeamDTO;
+import com.qwerfghi.aircompany.entity.model.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TeamRepository extends JpaRepository<TeamDTO, Integer> {
+public interface TestRepository extends JpaRepository<Person, Integer> {
 }

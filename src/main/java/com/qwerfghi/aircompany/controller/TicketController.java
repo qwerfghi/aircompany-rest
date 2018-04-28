@@ -1,6 +1,6 @@
 package com.qwerfghi.aircompany.controller;
 
-import com.qwerfghi.aircompany.entity.model.Ticket;
+import com.qwerfghi.aircompany.entity.dto.TicketDTO;
 import com.qwerfghi.aircompany.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,18 +18,18 @@ public class TicketController {
     }
 
     @GetMapping("/{id}")
-    public Ticket getTicket(@PathVariable("id") int id) {
+    public TicketDTO getTicket(@PathVariable("id") int id) {
         return ticketService.getTicketById(id);
     }
 
     @GetMapping
-    public List<Ticket> getTickets() {
+    public List<TicketDTO> getTickets() {
         return ticketService.getAllTickets();
     }
 
     @PostMapping
-    public void addTicket(@RequestBody Ticket ticket) {
-        ticketService.addTicket(ticket);
+    public void addTicket(@RequestBody TicketDTO ticketDTO) {
+        ticketService.addTicket(ticketDTO);
     }
 
     @DeleteMapping("/{id}")
@@ -38,7 +38,7 @@ public class TicketController {
     }
 
     @PutMapping
-    public void updateTicket(@RequestBody Ticket ticket) {
-        ticketService.updateTicket(ticket);
+    public void updateTicket(@RequestBody TicketDTO ticketDTO) {
+        ticketService.updateTicket(ticketDTO);
     }
 }

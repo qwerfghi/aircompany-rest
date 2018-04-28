@@ -1,14 +1,12 @@
-package com.qwerfghi.aircompany.entity.model;
+package com.qwerfghi.aircompany.entity.dto;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-public class Migration {
+@Table(name = "migration", schema = "aircompany")
+public class MigrationDTO {
     private Integer migrationId;
     private Integer departureId;
     private Date departureDate;
@@ -20,6 +18,7 @@ public class Migration {
     private Integer placeNumber;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "migration_id")
     public Integer getMigrationId() {
         return migrationId;
@@ -113,16 +112,16 @@ public class Migration {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Migration migration = (Migration) o;
-        return Objects.equals(migrationId, migration.migrationId) &&
-                Objects.equals(departureId, migration.departureId) &&
-                Objects.equals(departureDate, migration.departureDate) &&
-                Objects.equals(arrivalId, migration.arrivalId) &&
-                Objects.equals(arrivalDate, migration.arrivalDate) &&
-                Objects.equals(planeId, migration.planeId) &&
-                Objects.equals(cost, migration.cost) &&
-                Objects.equals(clazz, migration.clazz) &&
-                Objects.equals(placeNumber, migration.placeNumber);
+        MigrationDTO migrationDTO = (MigrationDTO) o;
+        return Objects.equals(migrationId, migrationDTO.migrationId) &&
+                Objects.equals(departureId, migrationDTO.departureId) &&
+                Objects.equals(departureDate, migrationDTO.departureDate) &&
+                Objects.equals(arrivalId, migrationDTO.arrivalId) &&
+                Objects.equals(arrivalDate, migrationDTO.arrivalDate) &&
+                Objects.equals(planeId, migrationDTO.planeId) &&
+                Objects.equals(cost, migrationDTO.cost) &&
+                Objects.equals(clazz, migrationDTO.clazz) &&
+                Objects.equals(placeNumber, migrationDTO.placeNumber);
     }
 
     @Override

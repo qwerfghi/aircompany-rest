@@ -1,12 +1,10 @@
 package com.qwerfghi.aircompany.entity.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "address", schema = "aircompany")
 public class Address {
     private Integer addressId;
     private String country;
@@ -19,6 +17,7 @@ public class Address {
     private Integer apartmentNumber;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "address_id")
     public Integer getAddressId() {
         return addressId;

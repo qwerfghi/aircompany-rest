@@ -1,6 +1,6 @@
 package com.qwerfghi.aircompany.controller;
 
-import com.qwerfghi.aircompany.entity.model.Passenger;
+import com.qwerfghi.aircompany.entity.dto.PassengerDTO;
 import com.qwerfghi.aircompany.service.PassengerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,18 +18,18 @@ public class PassengerController {
     }
 
     @GetMapping("/{id}")
-    public Passenger getPassenger(@PathVariable("id") int id) {
+    public PassengerDTO getPassenger(@PathVariable("id") int id) {
         return passengerService.getPassengerById(id);
     }
 
     @GetMapping
-    public List<Passenger> getPassengers() {
+    public List<PassengerDTO> getPassengers() {
         return passengerService.getAllPassengers();
     }
 
     @PostMapping
-    public void addPassenger(@RequestBody Passenger passenger) {
-        passengerService.addPassenger(passenger);
+    public void addPassenger(@RequestBody PassengerDTO passengerDTO) {
+        passengerService.addPassenger(passengerDTO);
     }
 
     @DeleteMapping("/{id}")
@@ -38,7 +38,7 @@ public class PassengerController {
     }
 
     @PutMapping
-    public void updatePassenger(@RequestBody Passenger passenger) {
-        passengerService.updatePassenger(passenger);
+    public void updatePassenger(@RequestBody PassengerDTO passengerDTO) {
+        passengerService.updatePassenger(passengerDTO);
     }
 }

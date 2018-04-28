@@ -1,18 +1,17 @@
-package com.qwerfghi.aircompany.entity.model;
+package com.qwerfghi.aircompany.entity.dto;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Flight {
+@Table(name = "flight", schema = "aircompany")
+public class FlightDTO {
     private Integer flightId;
     private Integer ticketId;
     private Integer migrationId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "flight_id")
     public Integer getFlightId() {
         return flightId;
@@ -46,10 +45,10 @@ public class Flight {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Flight flight = (Flight) o;
-        return Objects.equals(flightId, flight.flightId) &&
-                Objects.equals(ticketId, flight.ticketId) &&
-                Objects.equals(migrationId, flight.migrationId);
+        FlightDTO flightDTO = (FlightDTO) o;
+        return Objects.equals(flightId, flightDTO.flightId) &&
+                Objects.equals(ticketId, flightDTO.ticketId) &&
+                Objects.equals(migrationId, flightDTO.migrationId);
     }
 
     @Override

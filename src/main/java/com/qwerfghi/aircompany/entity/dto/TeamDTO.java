@@ -1,18 +1,17 @@
-package com.qwerfghi.aircompany.entity.model;
+package com.qwerfghi.aircompany.entity.dto;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Team {
+@Table(name = "team", schema = "aircompany")
+public class TeamDTO {
     private Integer teamId;
     private Integer planeId;
     private Integer employeeId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "team_id")
     public Integer getTeamId() {
         return teamId;
@@ -46,10 +45,10 @@ public class Team {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Team team = (Team) o;
-        return Objects.equals(teamId, team.teamId) &&
-                Objects.equals(planeId, team.planeId) &&
-                Objects.equals(employeeId, team.employeeId);
+        TeamDTO teamDTO = (TeamDTO) o;
+        return Objects.equals(teamId, teamDTO.teamId) &&
+                Objects.equals(planeId, teamDTO.planeId) &&
+                Objects.equals(employeeId, teamDTO.employeeId);
     }
 
     @Override

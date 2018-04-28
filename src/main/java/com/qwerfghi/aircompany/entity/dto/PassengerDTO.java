@@ -1,14 +1,12 @@
-package com.qwerfghi.aircompany.entity.model;
+package com.qwerfghi.aircompany.entity.dto;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-public class Passenger {
+@Table(name = "passenger", schema = "aircompany")
+public class PassengerDTO {
     private Integer passengerId;
     private String name;
     private String lastName;
@@ -20,6 +18,7 @@ public class Passenger {
     private Integer addressId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "passenger_id")
     public Integer getPassengerId() {
         return passengerId;
@@ -113,16 +112,16 @@ public class Passenger {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Passenger passenger = (Passenger) o;
-        return Objects.equals(passengerId, passenger.passengerId) &&
-                Objects.equals(name, passenger.name) &&
-                Objects.equals(lastName, passenger.lastName) &&
-                Objects.equals(sex, passenger.sex) &&
-                Objects.equals(birthdate, passenger.birthdate) &&
-                Objects.equals(passport, passenger.passport) &&
-                Objects.equals(phone, passenger.phone) &&
-                Objects.equals(countryCode, passenger.countryCode) &&
-                Objects.equals(addressId, passenger.addressId);
+        PassengerDTO passengerDTO = (PassengerDTO) o;
+        return Objects.equals(passengerId, passengerDTO.passengerId) &&
+                Objects.equals(name, passengerDTO.name) &&
+                Objects.equals(lastName, passengerDTO.lastName) &&
+                Objects.equals(sex, passengerDTO.sex) &&
+                Objects.equals(birthdate, passengerDTO.birthdate) &&
+                Objects.equals(passport, passengerDTO.passport) &&
+                Objects.equals(phone, passengerDTO.phone) &&
+                Objects.equals(countryCode, passengerDTO.countryCode) &&
+                Objects.equals(addressId, passengerDTO.addressId);
     }
 
     @Override

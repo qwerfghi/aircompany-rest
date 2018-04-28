@@ -1,6 +1,6 @@
 package com.qwerfghi.aircompany.service;
 
-import com.qwerfghi.aircompany.entity.model.Country;
+import com.qwerfghi.aircompany.entity.dto.CountryDTO;
 import com.qwerfghi.aircompany.repository.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,24 +19,24 @@ public class CountryService {
     }
 
     @Transactional(readOnly = true)
-    public Country getCountryById(String code) {
+    public CountryDTO getCountryById(String code) {
         return countryRepository.findOne(code);
     }
 
     @Transactional(readOnly = true)
-    public List<Country> getAllCountries() {
+    public List<CountryDTO> getAllCountries() {
         return countryRepository.findAll();
     }
 
-    public void addCountry(Country country) {
-        countryRepository.save(country);
+    public void addCountry(CountryDTO countryDTO) {
+        countryRepository.save(countryDTO);
     }
 
     public void deleteCountry(String code) {
         countryRepository.delete(code);
     }
 
-    public void updateCountry(Country country) {
-        countryRepository.save(country);
+    public void updateCountry(CountryDTO countryDTO) {
+        countryRepository.save(countryDTO);
     }
 }

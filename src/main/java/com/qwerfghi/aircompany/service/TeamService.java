@@ -1,6 +1,6 @@
 package com.qwerfghi.aircompany.service;
 
-import com.qwerfghi.aircompany.entity.model.Team;
+import com.qwerfghi.aircompany.entity.dto.TeamDTO;
 import com.qwerfghi.aircompany.repository.TeamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,24 +19,24 @@ public class TeamService {
     }
 
     @Transactional(readOnly = true)
-    public Team getTeamById(int id) {
+    public TeamDTO getTeamById(int id) {
         return teamRepository.findOne(id);
     }
 
     @Transactional(readOnly = true)
-    public List<Team> getAllTeams() {
+    public List<TeamDTO> getAllTeams() {
         return teamRepository.findAll();
     }
 
-    public void addTeam(Team plane) {
-        teamRepository.save(plane);
+    public void addTeam(TeamDTO teamDTO) {
+        teamRepository.save(teamDTO);
     }
 
     public void deleteTeam(int id) {
         teamRepository.delete(id);
     }
 
-    public void updateTeam(Team plane) {
-        teamRepository.save(plane);
+    public void updateTeam(TeamDTO teamDTO) {
+        teamRepository.save(teamDTO);
     }
 }

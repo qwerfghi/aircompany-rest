@@ -1,6 +1,6 @@
 package com.qwerfghi.aircompany.controller;
 
-import com.qwerfghi.aircompany.entity.model.Plane;
+import com.qwerfghi.aircompany.entity.dto.PlaneDTO;
 import com.qwerfghi.aircompany.service.PlaneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,18 +18,18 @@ public class PlaneController {
     }
 
     @GetMapping("/{id}")
-    public Plane getPlane(@PathVariable("id") int id) {
+    public PlaneDTO getPlane(@PathVariable("id") int id) {
         return planeService.getPlaneById(id);
     }
 
     @GetMapping
-    public List<Plane> getPlanes() {
+    public List<PlaneDTO> getPlanes() {
         return planeService.getAllPlanes();
     }
 
     @PostMapping
-    public void addPlane(@RequestBody Plane plane) {
-        planeService.addPlane(plane);
+    public void addPlane(@RequestBody PlaneDTO planeDTO) {
+        planeService.addPlane(planeDTO);
     }
 
     @DeleteMapping("/{id}")
@@ -38,7 +38,7 @@ public class PlaneController {
     }
 
     @PutMapping
-    public void updatePlane(@RequestBody Plane plane) {
-        planeService.updatePlane(plane);
+    public void updatePlane(@RequestBody PlaneDTO planeDTO) {
+        planeService.updatePlane(planeDTO);
     }
 }

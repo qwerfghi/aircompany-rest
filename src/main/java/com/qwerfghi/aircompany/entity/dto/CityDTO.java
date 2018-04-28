@@ -1,10 +1,11 @@
-package com.qwerfghi.aircompany.entity.model;
+package com.qwerfghi.aircompany.entity.dto;
 
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class City {
+@Table(name = "city", schema = "aircompany")
+public class CityDTO {
     private Integer cityId;
     private String name;
     private String countryCode;
@@ -66,12 +67,12 @@ public class City {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        City city = (City) o;
-        return Objects.equals(cityId, city.cityId) &&
-                Objects.equals(name, city.name) &&
-                Objects.equals(countryCode, city.countryCode) &&
-                Objects.equals(district, city.district) &&
-                Objects.equals(population, city.population);
+        CityDTO cityDTO = (CityDTO) o;
+        return Objects.equals(cityId, cityDTO.cityId) &&
+                Objects.equals(name, cityDTO.name) &&
+                Objects.equals(countryCode, cityDTO.countryCode) &&
+                Objects.equals(district, cityDTO.district) &&
+                Objects.equals(population, cityDTO.population);
     }
 
     @Override

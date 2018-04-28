@@ -1,13 +1,11 @@
-package com.qwerfghi.aircompany.entity.model;
+package com.qwerfghi.aircompany.entity.dto;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class User {
+@Table(name = "user", schema = "aircompany")
+public class UserDTO {
     private Integer userId;
     private String username;
     private String password;
@@ -15,6 +13,7 @@ public class User {
     private Integer personId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     public Integer getUserId() {
         return userId;
@@ -68,12 +67,12 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(userId, user.userId) &&
-                Objects.equals(username, user.username) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(userRole, user.userRole) &&
-                Objects.equals(personId, user.personId);
+        UserDTO userDTO = (UserDTO) o;
+        return Objects.equals(userId, userDTO.userId) &&
+                Objects.equals(username, userDTO.username) &&
+                Objects.equals(password, userDTO.password) &&
+                Objects.equals(userRole, userDTO.userRole) &&
+                Objects.equals(personId, userDTO.personId);
     }
 
     @Override

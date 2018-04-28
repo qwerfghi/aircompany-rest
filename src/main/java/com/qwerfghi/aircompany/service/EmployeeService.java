@@ -1,6 +1,6 @@
 package com.qwerfghi.aircompany.service;
 
-import com.qwerfghi.aircompany.entity.model.Employee;
+import com.qwerfghi.aircompany.entity.dto.EmployeeDTO;
 import com.qwerfghi.aircompany.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,24 +19,24 @@ public class EmployeeService {
     }
 
     @Transactional(readOnly = true)
-    public Employee getEmployeeById(int id) {
+    public EmployeeDTO getEmployeeById(int id) {
         return employeeRepository.findOne(id);
     }
 
     @Transactional(readOnly = true)
-    public List<Employee> getAllEmployees() {
+    public List<EmployeeDTO> getAllEmployees() {
         return employeeRepository.findAll();
     }
 
-    public void addEmployee(Employee employee) {
-        employeeRepository.save(employee);
+    public void addEmployee(EmployeeDTO employeeDTO) {
+        employeeRepository.save(employeeDTO);
     }
 
     public void deleteEmployee(int id) {
         employeeRepository.delete(id);
     }
 
-    public void updateEmployee(Employee employee) {
-        employeeRepository.save(employee);
+    public void updateEmployee(EmployeeDTO employeeDTO) {
+        employeeRepository.save(employeeDTO);
     }
 }

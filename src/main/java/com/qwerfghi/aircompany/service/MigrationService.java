@@ -1,6 +1,6 @@
 package com.qwerfghi.aircompany.service;
 
-import com.qwerfghi.aircompany.entity.model.Migration;
+import com.qwerfghi.aircompany.entity.dto.MigrationDTO;
 import com.qwerfghi.aircompany.repository.MigrationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,24 +19,24 @@ public class MigrationService {
     }
 
     @Transactional(readOnly = true)
-    public Migration getMigrationById(int id) {
+    public MigrationDTO getMigrationById(int id) {
         return migrationRepository.findOne(id);
     }
 
     @Transactional(readOnly = true)
-    public List<Migration> getAllMigrations() {
+    public List<MigrationDTO> getAllMigrations() {
         return migrationRepository.findAll();
     }
 
-    public void addMigration(Migration migration) {
-        migrationRepository.save(migration);
+    public void addMigration(MigrationDTO migrationDTO) {
+        migrationRepository.save(migrationDTO);
     }
 
     public void deleteMigration(int id) {
         migrationRepository.delete(id);
     }
 
-    public void updateMigration(Migration migration) {
-        migrationRepository.save(migration);
+    public void updateMigration(MigrationDTO migrationDTO) {
+        migrationRepository.save(migrationDTO);
     }
 }

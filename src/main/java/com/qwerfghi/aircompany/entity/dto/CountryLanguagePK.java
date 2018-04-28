@@ -1,4 +1,4 @@
-package com.qwerfghi.aircompany.entity.model;
+package com.qwerfghi.aircompany.entity.dto;
 
 import javax.persistence.Column;
 import javax.persistence.Id;

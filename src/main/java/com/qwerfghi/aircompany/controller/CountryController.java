@@ -1,6 +1,6 @@
 package com.qwerfghi.aircompany.controller;
 
-import com.qwerfghi.aircompany.entity.model.Country;
+import com.qwerfghi.aircompany.entity.dto.CountryDTO;
 import com.qwerfghi.aircompany.service.CountryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,18 +18,18 @@ public class CountryController {
     }
 
     @GetMapping("/{code}")
-    public Country getCountry(@PathVariable("code") String code) {
+    public CountryDTO getCountry(@PathVariable("code") String code) {
         return countryService.getCountryById(code);
     }
 
     @GetMapping
-    public List<Country> getCountries() {
+    public List<CountryDTO> getCountries() {
         return countryService.getAllCountries();
     }
 
     @PostMapping
-    public void addCountry(@RequestBody Country country) {
-        countryService.addCountry(country);
+    public void addCountry(@RequestBody CountryDTO countryDTO) {
+        countryService.addCountry(countryDTO);
     }
 
     @DeleteMapping("/{code}")
@@ -38,7 +38,7 @@ public class CountryController {
     }
 
     @PutMapping
-    public void updateCountry(@RequestBody Country country) {
-        countryService.updateCountry(country);
+    public void updateCountry(@RequestBody CountryDTO countryDTO) {
+        countryService.updateCountry(countryDTO);
     }
 }

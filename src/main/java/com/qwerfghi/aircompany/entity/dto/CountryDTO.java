@@ -1,13 +1,11 @@
-package com.qwerfghi.aircompany.entity.model;
+package com.qwerfghi.aircompany.entity.dto;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Country {
+@Table(name = "country", schema = "aircompany")
+public class CountryDTO {
     private String code;
     private String name;
     private String continent;
@@ -123,17 +121,17 @@ public class Country {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Country country = (Country) o;
-        return Objects.equals(code, country.code) &&
-                Objects.equals(name, country.name) &&
-                Objects.equals(continent, country.continent) &&
-                Objects.equals(region, country.region) &&
-                Objects.equals(surfaceArea, country.surfaceArea) &&
-                Objects.equals(indepYear, country.indepYear) &&
-                Objects.equals(population, country.population) &&
-                Objects.equals(localName, country.localName) &&
-                Objects.equals(governmentForm, country.governmentForm) &&
-                Objects.equals(code2, country.code2);
+        CountryDTO countryDTO = (CountryDTO) o;
+        return Objects.equals(code, countryDTO.code) &&
+                Objects.equals(name, countryDTO.name) &&
+                Objects.equals(continent, countryDTO.continent) &&
+                Objects.equals(region, countryDTO.region) &&
+                Objects.equals(surfaceArea, countryDTO.surfaceArea) &&
+                Objects.equals(indepYear, countryDTO.indepYear) &&
+                Objects.equals(population, countryDTO.population) &&
+                Objects.equals(localName, countryDTO.localName) &&
+                Objects.equals(governmentForm, countryDTO.governmentForm) &&
+                Objects.equals(code2, countryDTO.code2);
     }
 
     @Override

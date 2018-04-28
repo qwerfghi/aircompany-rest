@@ -1,6 +1,6 @@
 package com.qwerfghi.aircompany.controller;
 
-import com.qwerfghi.aircompany.entity.model.Address;
+import com.qwerfghi.aircompany.entity.dto.AddressDTO;
 import com.qwerfghi.aircompany.service.AddressService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,18 +18,18 @@ public class AddressController {
     }
 
     @GetMapping("/{id}")
-    public Address getAddress(@PathVariable("id") int id) {
+    public AddressDTO getAddress(@PathVariable("id") int id) {
         return addressService.getAddressById(id);
     }
 
     @GetMapping
-    public List<Address> getAddresses() {
+    public List<AddressDTO> getAddresses() {
         return addressService.getAllAddresses();
     }
 
     @PostMapping
-    public void addAddress(@RequestBody Address address) {
-        addressService.addAddress(address);
+    public void addAddress(@RequestBody AddressDTO addressDTO) {
+        addressService.addAddress(addressDTO);
     }
 
     @DeleteMapping("/{id}")
@@ -38,7 +38,7 @@ public class AddressController {
     }
 
     @PutMapping
-    public void updateAddress(@RequestBody Address address) {
-        addressService.updateAddress(address);
+    public void updateAddress(@RequestBody AddressDTO addressDTO) {
+        addressService.updateAddress(addressDTO);
     }
 }

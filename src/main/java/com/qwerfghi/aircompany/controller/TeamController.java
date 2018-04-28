@@ -1,6 +1,6 @@
 package com.qwerfghi.aircompany.controller;
 
-import com.qwerfghi.aircompany.entity.model.Team;
+import com.qwerfghi.aircompany.entity.dto.TeamDTO;
 import com.qwerfghi.aircompany.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,18 +18,18 @@ public class TeamController {
     }
 
     @GetMapping("/{id}")
-    public Team getTeam(@PathVariable("id") int id) {
+    public TeamDTO getTeam(@PathVariable("id") int id) {
         return teamService.getTeamById(id);
     }
 
     @GetMapping
-    public List<Team> getTeams() {
+    public List<TeamDTO> getTeams() {
         return teamService.getAllTeams();
     }
 
     @PostMapping
-    public void addTeam(@RequestBody Team team) {
-        teamService.addTeam(team);
+    public void addTeam(@RequestBody TeamDTO teamDTO) {
+        teamService.addTeam(teamDTO);
     }
 
     @DeleteMapping("/{id}")
@@ -38,7 +38,7 @@ public class TeamController {
     }
 
     @PutMapping
-    public void updateTeam(@RequestBody Team team) {
-        teamService.updateTeam(team);
+    public void updateTeam(@RequestBody TeamDTO teamDTO) {
+        teamService.updateTeam(teamDTO);
     }
 }
