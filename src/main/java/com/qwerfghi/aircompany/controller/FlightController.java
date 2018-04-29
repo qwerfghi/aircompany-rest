@@ -1,5 +1,6 @@
 package com.qwerfghi.aircompany.controller;
 
+import com.qwerfghi.aircompany.entity.dto.FlightDTO;
 import com.qwerfghi.aircompany.service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

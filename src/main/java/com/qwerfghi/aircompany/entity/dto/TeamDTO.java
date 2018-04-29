@@ -11,7 +11,6 @@ public class TeamDTO {
     private Integer employeeId;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "team_id")
     public Integer getTeamId() {
         return teamId;

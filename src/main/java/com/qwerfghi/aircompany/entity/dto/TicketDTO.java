@@ -7,11 +7,12 @@ import java.util.Objects;
 @Table(name = "ticket", schema = "aircompany")
 public class TicketDTO {
     private Integer ticketId;
+    private Integer cost;
+    private String clazz;
+    private Integer placeNumber;
     private Integer passengerId;
-    private Integer flightId;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ticket_id")
     public Integer getTicketId() {
         return ticketId;
@@ -19,6 +20,36 @@ public class TicketDTO {
 
     public void setTicketId(Integer ticketId) {
         this.ticketId = ticketId;
+    }
+
+    @Basic
+    @Column(name = "cost")
+    public Integer getCost() {
+        return cost;
+    }
+
+    public void setCost(Integer cost) {
+        this.cost = cost;
+    }
+
+    @Basic
+    @Column(name = "class")
+    public String getClazz() {
+        return clazz;
+    }
+
+    public void setClazz(String clazz) {
+        this.clazz = clazz;
+    }
+
+    @Basic
+    @Column(name = "place_number")
+    public Integer getPlaceNumber() {
+        return placeNumber;
+    }
+
+    public void setPlaceNumber(Integer placeNumber) {
+        this.placeNumber = placeNumber;
     }
 
     @Basic
@@ -31,29 +62,21 @@ public class TicketDTO {
         this.passengerId = passengerId;
     }
 
-    @Basic
-    @Column(name = "flight_id")
-    public Integer getFlightId() {
-        return flightId;
-    }
-
-    public void setFlightId(Integer flightId) {
-        this.flightId = flightId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TicketDTO ticketDTO = (TicketDTO) o;
         return Objects.equals(ticketId, ticketDTO.ticketId) &&
-                Objects.equals(passengerId, ticketDTO.passengerId) &&
-                Objects.equals(flightId, ticketDTO.flightId);
+                Objects.equals(cost, ticketDTO.cost) &&
+                Objects.equals(clazz, ticketDTO.clazz) &&
+                Objects.equals(placeNumber, ticketDTO.placeNumber) &&
+                Objects.equals(passengerId, ticketDTO.passengerId);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(ticketId, passengerId, flightId);
+        return Objects.hash(ticketId, cost, clazz, placeNumber, passengerId);
     }
 }

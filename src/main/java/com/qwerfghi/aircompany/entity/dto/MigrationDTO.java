@@ -7,31 +7,30 @@ import java.util.Objects;
 @Entity
 @Table(name = "migration", schema = "aircompany")
 public class MigrationDTO {
-    private int migrationId;
-    private int departureId;
+    private Integer migrationId;
+    private Integer departureId;
     private Date departureDate;
-    private int arrivalId;
+    private Integer arrivalId;
     private Date arrivalDate;
-    private int planeId;
-    private int placeNumber;
+    private Integer planeId;
 
     @Id
     @Column(name = "migration_id")
-    public int getMigrationId() {
+    public Integer getMigrationId() {
         return migrationId;
     }
 
-    public void setMigrationId(int migrationId) {
+    public void setMigrationId(Integer migrationId) {
         this.migrationId = migrationId;
     }
 
     @Basic
     @Column(name = "departure_id")
-    public int getDepartureId() {
+    public Integer getDepartureId() {
         return departureId;
     }
 
-    public void setDepartureId(int departureId) {
+    public void setDepartureId(Integer departureId) {
         this.departureId = departureId;
     }
 
@@ -47,11 +46,11 @@ public class MigrationDTO {
 
     @Basic
     @Column(name = "arrival_id")
-    public int getArrivalId() {
+    public Integer getArrivalId() {
         return arrivalId;
     }
 
-    public void setArrivalId(int arrivalId) {
+    public void setArrivalId(Integer arrivalId) {
         this.arrivalId = arrivalId;
     }
 
@@ -67,22 +66,12 @@ public class MigrationDTO {
 
     @Basic
     @Column(name = "plane_id")
-    public int getPlaneId() {
+    public Integer getPlaneId() {
         return planeId;
     }
 
-    public void setPlaneId(int planeId) {
+    public void setPlaneId(Integer planeId) {
         this.planeId = planeId;
-    }
-
-    @Basic
-    @Column(name = "place_number")
-    public int getPlaceNumber() {
-        return placeNumber;
-    }
-
-    public void setPlaceNumber(int placeNumber) {
-        this.placeNumber = placeNumber;
     }
 
     @Override
@@ -90,18 +79,17 @@ public class MigrationDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MigrationDTO that = (MigrationDTO) o;
-        return migrationId == that.migrationId &&
-                departureId == that.departureId &&
-                arrivalId == that.arrivalId &&
-                planeId == that.planeId &&
-                placeNumber == that.placeNumber &&
+        return Objects.equals(migrationId, that.migrationId) &&
+                Objects.equals(departureId, that.departureId) &&
                 Objects.equals(departureDate, that.departureDate) &&
-                Objects.equals(arrivalDate, that.arrivalDate);
+                Objects.equals(arrivalId, that.arrivalId) &&
+                Objects.equals(arrivalDate, that.arrivalDate) &&
+                Objects.equals(planeId, that.planeId);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(migrationId, departureId, departureDate, arrivalId, arrivalDate, planeId, placeNumber);
+        return Objects.hash(migrationId, departureId, departureDate, arrivalId, arrivalDate, planeId);
     }
 }

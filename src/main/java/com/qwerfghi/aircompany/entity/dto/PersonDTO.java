@@ -2,6 +2,7 @@ package com.qwerfghi.aircompany.entity.dto;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "person", schema = "aircompany")
@@ -14,12 +15,10 @@ public class PersonDTO {
     private String passport;
     private String phone;
     private String email;
-    private Integer workRecordBookNumber;
     private String country;
     private Integer addressId;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "person_id")
     public Integer getPersonId() {
         return personId;
@@ -100,16 +99,6 @@ public class PersonDTO {
     }
 
     @Basic
-    @Column(name = "work_record_book_number")
-    public Integer getWorkRecordBookNumber() {
-        return workRecordBookNumber;
-    }
-
-    public void setWorkRecordBookNumber(Integer workRecordBookNumber) {
-        this.workRecordBookNumber = workRecordBookNumber;
-    }
-
-    @Basic
     @Column(name = "country")
     public String getCountry() {
         return country;
@@ -127,5 +116,28 @@ public class PersonDTO {
 
     public void setAddressId(Integer addressId) {
         this.addressId = addressId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PersonDTO personDTO = (PersonDTO) o;
+        return Objects.equals(personId, personDTO.personId) &&
+                Objects.equals(name, personDTO.name) &&
+                Objects.equals(lastName, personDTO.lastName) &&
+                Objects.equals(sex, personDTO.sex) &&
+                Objects.equals(birthdate, personDTO.birthdate) &&
+                Objects.equals(passport, personDTO.passport) &&
+                Objects.equals(phone, personDTO.phone) &&
+                Objects.equals(email, personDTO.email) &&
+                Objects.equals(country, personDTO.country) &&
+                Objects.equals(addressId, personDTO.addressId);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(personId, name, lastName, sex, birthdate, passport, phone, email, country, addressId);
     }
 }

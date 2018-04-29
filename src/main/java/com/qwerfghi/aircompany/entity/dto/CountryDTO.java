@@ -121,17 +121,17 @@ public class CountryDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CountryDTO countryDTO = (CountryDTO) o;
-        return Objects.equals(code, countryDTO.code) &&
-                Objects.equals(name, countryDTO.name) &&
-                Objects.equals(continent, countryDTO.continent) &&
-                Objects.equals(region, countryDTO.region) &&
-                Objects.equals(surfaceArea, countryDTO.surfaceArea) &&
-                Objects.equals(indepYear, countryDTO.indepYear) &&
-                Objects.equals(population, countryDTO.population) &&
-                Objects.equals(localName, countryDTO.localName) &&
-                Objects.equals(governmentForm, countryDTO.governmentForm) &&
-                Objects.equals(code2, countryDTO.code2);
+        CountryDTO that = (CountryDTO) o;
+        return Objects.equals(code, that.code) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(continent, that.continent) &&
+                Objects.equals(region, that.region) &&
+                Objects.equals(surfaceArea, that.surfaceArea) &&
+                Objects.equals(indepYear, that.indepYear) &&
+                Objects.equals(population, that.population) &&
+                Objects.equals(localName, that.localName) &&
+                Objects.equals(governmentForm, that.governmentForm) &&
+                Objects.equals(code2, that.code2);
     }
 
     @Override

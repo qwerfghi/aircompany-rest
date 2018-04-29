@@ -1,5 +1,7 @@
 package com.qwerfghi.aircompany.entity.model;
 
+import com.qwerfghi.aircompany.entity.enums.UserRole;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,7 +10,7 @@ public class User {
     private Integer userId;
     private String username;
     private String password;
-    private String userRole;
+    private UserRole userRole;
     private Person person;
 
     @Id
@@ -42,13 +44,13 @@ public class User {
         this.password = password;
     }
 
-    @Basic
+    @Enumerated(EnumType.STRING)
     @Column(name = "user_role")
-    public String getUserRole() {
+    public UserRole getUserRole() {
         return userRole;
     }
 
-    public void setUserRole(String userRole) {
+    public void setUserRole(UserRole userRole) {
         this.userRole = userRole;
     }
 

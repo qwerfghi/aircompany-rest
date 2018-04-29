@@ -1,5 +1,7 @@
 package com.qwerfghi.aircompany.entity.model;
 
+import com.qwerfghi.aircompany.entity.enums.Sex;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -9,7 +11,7 @@ public class Person {
     private Integer personId;
     private String name;
     private String lastName;
-    private String sex;
+    private Sex sex;
     private Date birthdate;
     private String passport;
     private String phone;
@@ -48,13 +50,13 @@ public class Person {
         this.lastName = lastName;
     }
 
-    @Basic
+    @Enumerated(EnumType.STRING)
     @Column(name = "sex")
-    public String getSex() {
+    public Sex getSex() {
         return sex;
     }
 
-    public void setSex(String sex) {
+    public void setSex(Sex sex) {
         this.sex = sex;
     }
 

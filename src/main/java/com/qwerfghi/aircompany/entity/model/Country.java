@@ -1,5 +1,7 @@
 package com.qwerfghi.aircompany.entity.model;
 
+import com.qwerfghi.aircompany.entity.enums.Continent;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,7 +9,7 @@ import javax.persistence.*;
 public class Country {
     private String code;
     private String name;
-    private String continent;
+    private Continent continent;
     private String region;
     private Double surfaceArea;
     private Short indepYear;
@@ -36,13 +38,13 @@ public class Country {
         this.name = name;
     }
 
-    @Basic
+    @Enumerated(EnumType.STRING)
     @Column(name = "continent")
-    public String getContinent() {
+    public Continent getContinent() {
         return continent;
     }
 
-    public void setContinent(String continent) {
+    public void setContinent(Continent continent) {
         this.continent = continent;
     }
 

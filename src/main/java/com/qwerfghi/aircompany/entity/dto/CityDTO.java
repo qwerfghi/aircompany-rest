@@ -13,7 +13,6 @@ public class CityDTO {
     private Integer population;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "city_id")
     public Integer getCityId() {
         return cityId;

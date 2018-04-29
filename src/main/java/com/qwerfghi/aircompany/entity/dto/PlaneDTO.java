@@ -10,10 +10,8 @@ public class PlaneDTO {
     private String model;
     private Integer businessClassCount;
     private Integer economyClassCount;
-    private Integer teamId;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "plane_id")
     public Integer getPlaneId() {
         return planeId;
@@ -39,8 +37,8 @@ public class PlaneDTO {
         return businessClassCount;
     }
 
-    public void setBusinessClassCount(Integer blassCount) {
-        this.businessClassCount = blassCount;
+    public void setBusinessClassCount(Integer businessClassCount) {
+        this.businessClassCount = businessClassCount;
     }
 
     @Basic
@@ -49,18 +47,8 @@ public class PlaneDTO {
         return economyClassCount;
     }
 
-    public void setEconomyClassCount(Integer eclassCount) {
-        this.economyClassCount = eclassCount;
-    }
-
-    @Basic
-    @Column(name = "team_id")
-    public Integer getTeamId() {
-        return teamId;
-    }
-
-    public void setTeamId(Integer teamId) {
-        this.teamId = teamId;
+    public void setEconomyClassCount(Integer economyClassCount) {
+        this.economyClassCount = economyClassCount;
     }
 
     @Override
@@ -71,13 +59,12 @@ public class PlaneDTO {
         return Objects.equals(planeId, planeDTO.planeId) &&
                 Objects.equals(model, planeDTO.model) &&
                 Objects.equals(businessClassCount, planeDTO.businessClassCount) &&
-                Objects.equals(economyClassCount, planeDTO.economyClassCount) &&
-                Objects.equals(teamId, planeDTO.teamId);
+                Objects.equals(economyClassCount, planeDTO.economyClassCount);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(planeId, model, businessClassCount, economyClassCount, teamId);
+        return Objects.hash(planeId, model, businessClassCount, economyClassCount);
     }
 }

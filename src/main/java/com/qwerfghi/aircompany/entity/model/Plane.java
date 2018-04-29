@@ -1,6 +1,7 @@
 package com.qwerfghi.aircompany.entity.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "plane", schema = "aircompany")
@@ -9,7 +10,7 @@ public class Plane {
     private String model;
     private Integer businessClassCount;
     private Integer economyClassCount;
-    private Team team;
+    private Set<Employee> employees;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,13 +53,15 @@ public class Plane {
         this.economyClassCount = economyClassCount;
     }
 
-    @OneToOne
-    @JoinColumn(name = "team_id", foreignKey = @ForeignKey(name = "plane_team_fk"))
-    public Team getTeamId() {
-        return team;
+    @ManyToMany
+    @JoinTable(name = "team",
+            joinColumns = @JoinColumn(name = "plane_id", foreignKey = @ForeignKey(name = "team_plane_fk")),
+            inverseJoinColumns = @JoinColumn(name = "employee_id", foreignKey = @ForeignKey(name = "team_employee_fk")))
+    public Set<Employee> getEmployees() {
+        return employees;
     }
 
-    public void setTeamId(Team team) {
-        this.team = team;
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
     }
 }

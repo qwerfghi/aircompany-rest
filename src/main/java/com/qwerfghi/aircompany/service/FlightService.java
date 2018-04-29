@@ -1,5 +1,6 @@
 package com.qwerfghi.aircompany.service;
 
+import com.qwerfghi.aircompany.entity.dto.FlightDTO;
 import com.qwerfghi.aircompany.repository.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

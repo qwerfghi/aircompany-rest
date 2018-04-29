@@ -1,7 +1,6 @@
 package com.qwerfghi.aircompany.entity.model;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "address", schema = "aircompany")
@@ -105,27 +104,5 @@ public class Address {
 
     public void setApartmentNumber(Integer apartmentNumber) {
         this.apartmentNumber = apartmentNumber;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Address address = (Address) o;
-        return Objects.equals(addressId, address.addressId) &&
-                Objects.equals(country, address.country) &&
-                Objects.equals(state, address.state) &&
-                Objects.equals(region, address.region) &&
-                Objects.equals(city, address.city) &&
-                Objects.equals(district, address.district) &&
-                Objects.equals(village, address.village) &&
-                Objects.equals(houseNumber, address.houseNumber) &&
-                Objects.equals(apartmentNumber, address.apartmentNumber);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(addressId, country, state, region, city, district, village, houseNumber, apartmentNumber);
     }
 }

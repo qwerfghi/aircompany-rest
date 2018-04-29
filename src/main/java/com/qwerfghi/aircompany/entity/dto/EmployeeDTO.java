@@ -10,10 +10,10 @@ public class EmployeeDTO {
     private String position;
     private String department;
     private Integer salary;
+    private Integer workRecordBookNumber;
     private Integer personId;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "employee_id")
     public Integer getEmployeeId() {
         return employeeId;
@@ -54,6 +54,16 @@ public class EmployeeDTO {
     }
 
     @Basic
+    @Column(name = "work_record_book_number")
+    public Integer getWorkRecordBookNumber() {
+        return workRecordBookNumber;
+    }
+
+    public void setWorkRecordBookNumber(Integer workRecordBookNumber) {
+        this.workRecordBookNumber = workRecordBookNumber;
+    }
+
+    @Basic
     @Column(name = "person_id")
     public Integer getPersonId() {
         return personId;
@@ -67,17 +77,18 @@ public class EmployeeDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        EmployeeDTO employeeDTO = (EmployeeDTO) o;
-        return Objects.equals(employeeId, employeeDTO.employeeId) &&
-                Objects.equals(position, employeeDTO.position) &&
-                Objects.equals(department, employeeDTO.department) &&
-                Objects.equals(salary, employeeDTO.salary) &&
-                Objects.equals(personId, employeeDTO.personId);
+        EmployeeDTO that = (EmployeeDTO) o;
+        return Objects.equals(employeeId, that.employeeId) &&
+                Objects.equals(position, that.position) &&
+                Objects.equals(department, that.department) &&
+                Objects.equals(salary, that.salary) &&
+                Objects.equals(workRecordBookNumber, that.workRecordBookNumber) &&
+                Objects.equals(personId, that.personId);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(employeeId, position, department, salary, personId);
+        return Objects.hash(employeeId, position, department, salary, workRecordBookNumber, personId);
     }
 }

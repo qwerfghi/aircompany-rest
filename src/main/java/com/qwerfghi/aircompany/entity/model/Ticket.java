@@ -1,5 +1,7 @@
 package com.qwerfghi.aircompany.entity.model;
 
+import com.qwerfghi.aircompany.entity.enums.TicketClass;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -9,7 +11,7 @@ public class Ticket {
     private Integer ticketId;
     private int placeNumber;
     private int cost;
-    private String clazz;
+    private TicketClass ticketClass;
     private Passenger passenger;
     private Set<Migration> migrations;
 
@@ -44,14 +46,14 @@ public class Ticket {
         this.cost = cost;
     }
 
-    @Basic
+    @Enumerated(EnumType.STRING)
     @Column(name = "class")
-    public String getClazz() {
-        return clazz;
+    public TicketClass getTicketClass() {
+        return ticketClass;
     }
 
-    public void setClazz(String clazz) {
-        this.clazz = clazz;
+    public void setTicketClass(TicketClass ticketClass) {
+        this.ticketClass = ticketClass;
     }
 
     @ManyToOne

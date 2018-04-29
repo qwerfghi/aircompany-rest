@@ -17,7 +17,6 @@ public class AddressDTO {
     private Integer apartmentNumber;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "address_id")
     public Integer getAddressId() {
         return addressId;
@@ -111,16 +110,16 @@ public class AddressDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AddressDTO addressDTO = (AddressDTO) o;
-        return Objects.equals(addressId, addressDTO.addressId) &&
-                Objects.equals(country, addressDTO.country) &&
-                Objects.equals(state, addressDTO.state) &&
-                Objects.equals(region, addressDTO.region) &&
-                Objects.equals(city, addressDTO.city) &&
-                Objects.equals(district, addressDTO.district) &&
-                Objects.equals(village, addressDTO.village) &&
-                Objects.equals(houseNumber, addressDTO.houseNumber) &&
-                Objects.equals(apartmentNumber, addressDTO.apartmentNumber);
+        AddressDTO that = (AddressDTO) o;
+        return Objects.equals(addressId, that.addressId) &&
+                Objects.equals(country, that.country) &&
+                Objects.equals(state, that.state) &&
+                Objects.equals(region, that.region) &&
+                Objects.equals(city, that.city) &&
+                Objects.equals(district, that.district) &&
+                Objects.equals(village, that.village) &&
+                Objects.equals(houseNumber, that.houseNumber) &&
+                Objects.equals(apartmentNumber, that.apartmentNumber);
     }
 
     @Override
