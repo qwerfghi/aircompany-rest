@@ -1,4 +1,4 @@
-package com.qwerfghi.aircompany.entity.dto;
+package com.qwerfghi.aircompany.entity.model;
 
 import javax.persistence.*;
 import java.util.Objects;
