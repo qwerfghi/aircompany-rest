@@ -1,6 +1,5 @@
 package com.qwerfghi.aircompany.controller;
 
-import com.qwerfghi.aircompany.entity.dto.MigrationDTO;
 import com.qwerfghi.aircompany.service.MigrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

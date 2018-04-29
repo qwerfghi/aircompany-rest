@@ -9,6 +9,7 @@ public class Employee {
     private String position;
     private String department;
     private Integer salary;
+    private Integer workRecordBookNumber;
     private Person person;
 
     @Id
@@ -50,6 +51,16 @@ public class Employee {
 
     public void setSalary(Integer salary) {
         this.salary = salary;
+    }
+
+    @Basic
+    @Column(name = "work_record_book_number")
+    public Integer getWorkRecordBookNumber() {
+        return workRecordBookNumber;
+    }
+
+    public void setWorkRecordBookNumber(Integer workRecordBookNumber) {
+        this.workRecordBookNumber = workRecordBookNumber;
     }
 
     @OneToOne(cascade = CascadeType.REMOVE)

@@ -4,28 +4,27 @@ import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Table(name = "person", schema = "aircompany")
-public class Person {
-    private Integer personId;
+@Table(name = "passenger", schema = "aircompany")
+public class Passenger {
+    private Integer passengerId;
     private String name;
     private String lastName;
     private String sex;
     private Date birthdate;
     private String passport;
     private String phone;
-    private String email;
     private Country country;
     private Address address;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "person_id")
-    public Integer getPersonId() {
-        return personId;
+    @Column(name = "passenger_id")
+    public Integer getPassengerId() {
+        return passengerId;
     }
 
-    public void setPersonId(Integer personId) {
-        this.personId = personId;
+    public void setPassengerId(Integer passengerId) {
+        this.passengerId = passengerId;
     }
 
     @Basic
@@ -88,18 +87,8 @@ public class Person {
         this.phone = phone;
     }
 
-    @Basic
-    @Column(name = "email")
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @OneToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "country", foreignKey = @ForeignKey(name = "person_country_fk"))
+    @OneToOne
+    @JoinColumn(name = "country", foreignKey = @ForeignKey(name = "passenger_country_fk"))
     public Country getCountry() {
         return country;
     }
@@ -109,7 +98,7 @@ public class Person {
     }
 
     @OneToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "address_id", foreignKey = @ForeignKey(name = "person_address_fk"))
+    @JoinColumn(name = "address_id", foreignKey = @ForeignKey(name = "passenger_address_fk"))
     public Address getAddress() {
         return address;
     }

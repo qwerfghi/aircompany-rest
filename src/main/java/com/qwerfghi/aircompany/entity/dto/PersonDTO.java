@@ -15,7 +15,7 @@ public class PersonDTO {
     private String phone;
     private String email;
     private Integer workRecordBookNumber;
-    private String countryCode;
+    private String country;
     private Integer addressId;
 
     @Id
@@ -110,13 +110,13 @@ public class PersonDTO {
     }
 
     @Basic
-    @Column(name = "country_code")
-    public String getCountryCode() {
-        return countryCode;
+    @Column(name = "country")
+    public String getCountry() {
+        return country;
     }
 
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     @Basic

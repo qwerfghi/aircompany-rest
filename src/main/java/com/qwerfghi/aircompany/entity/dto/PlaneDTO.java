@@ -8,8 +8,8 @@ import java.util.Objects;
 public class PlaneDTO {
     private Integer planeId;
     private String model;
-    private Integer blassCount;
-    private Integer eclassCount;
+    private Integer businessClassCount;
+    private Integer economyClassCount;
     private Integer teamId;
 
     @Id
@@ -34,23 +34,23 @@ public class PlaneDTO {
     }
 
     @Basic
-    @Column(name = "blass_count")
-    public Integer getBlassCount() {
-        return blassCount;
+    @Column(name = "business_class_count")
+    public Integer getBusinessClassCount() {
+        return businessClassCount;
     }
 
-    public void setBlassCount(Integer blassCount) {
-        this.blassCount = blassCount;
+    public void setBusinessClassCount(Integer blassCount) {
+        this.businessClassCount = blassCount;
     }
 
     @Basic
-    @Column(name = "eclass_count")
-    public Integer getEclassCount() {
-        return eclassCount;
+    @Column(name = "economy_class_count")
+    public Integer getEconomyClassCount() {
+        return economyClassCount;
     }
 
-    public void setEclassCount(Integer eclassCount) {
-        this.eclassCount = eclassCount;
+    public void setEconomyClassCount(Integer eclassCount) {
+        this.economyClassCount = eclassCount;
     }
 
     @Basic
@@ -70,14 +70,14 @@ public class PlaneDTO {
         PlaneDTO planeDTO = (PlaneDTO) o;
         return Objects.equals(planeId, planeDTO.planeId) &&
                 Objects.equals(model, planeDTO.model) &&
-                Objects.equals(blassCount, planeDTO.blassCount) &&
-                Objects.equals(eclassCount, planeDTO.eclassCount) &&
+                Objects.equals(businessClassCount, planeDTO.businessClassCount) &&
+                Objects.equals(economyClassCount, planeDTO.economyClassCount) &&
                 Objects.equals(teamId, planeDTO.teamId);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(planeId, model, blassCount, eclassCount, teamId);
+        return Objects.hash(planeId, model, businessClassCount, economyClassCount, teamId);
     }
 }

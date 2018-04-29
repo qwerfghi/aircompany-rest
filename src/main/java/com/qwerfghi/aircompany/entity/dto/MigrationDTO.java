@@ -7,34 +7,31 @@ import java.util.Objects;
 @Entity
 @Table(name = "migration", schema = "aircompany")
 public class MigrationDTO {
-    private Integer migrationId;
-    private Integer departureId;
+    private int migrationId;
+    private int departureId;
     private Date departureDate;
-    private Integer arrivalId;
+    private int arrivalId;
     private Date arrivalDate;
-    private Integer planeId;
-    private Integer cost;
-    private String clazz;
-    private Integer placeNumber;
+    private int planeId;
+    private int placeNumber;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "migration_id")
-    public Integer getMigrationId() {
+    public int getMigrationId() {
         return migrationId;
     }
 
-    public void setMigrationId(Integer migrationId) {
+    public void setMigrationId(int migrationId) {
         this.migrationId = migrationId;
     }
 
     @Basic
     @Column(name = "departure_id")
-    public Integer getDepartureId() {
+    public int getDepartureId() {
         return departureId;
     }
 
-    public void setDepartureId(Integer departureId) {
+    public void setDepartureId(int departureId) {
         this.departureId = departureId;
     }
 
@@ -50,11 +47,11 @@ public class MigrationDTO {
 
     @Basic
     @Column(name = "arrival_id")
-    public Integer getArrivalId() {
+    public int getArrivalId() {
         return arrivalId;
     }
 
-    public void setArrivalId(Integer arrivalId) {
+    public void setArrivalId(int arrivalId) {
         this.arrivalId = arrivalId;
     }
 
@@ -70,41 +67,21 @@ public class MigrationDTO {
 
     @Basic
     @Column(name = "plane_id")
-    public Integer getPlaneId() {
+    public int getPlaneId() {
         return planeId;
     }
 
-    public void setPlaneId(Integer planeId) {
+    public void setPlaneId(int planeId) {
         this.planeId = planeId;
     }
 
     @Basic
-    @Column(name = "cost")
-    public Integer getCost() {
-        return cost;
-    }
-
-    public void setCost(Integer cost) {
-        this.cost = cost;
-    }
-
-    @Basic
-    @Column(name = "class")
-    public String getClazz() {
-        return clazz;
-    }
-
-    public void setClazz(String clazz) {
-        this.clazz = clazz;
-    }
-
-    @Basic
     @Column(name = "place_number")
-    public Integer getPlaceNumber() {
+    public int getPlaceNumber() {
         return placeNumber;
     }
 
-    public void setPlaceNumber(Integer placeNumber) {
+    public void setPlaceNumber(int placeNumber) {
         this.placeNumber = placeNumber;
     }
 
@@ -112,21 +89,19 @@ public class MigrationDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MigrationDTO migrationDTO = (MigrationDTO) o;
-        return Objects.equals(migrationId, migrationDTO.migrationId) &&
-                Objects.equals(departureId, migrationDTO.departureId) &&
-                Objects.equals(departureDate, migrationDTO.departureDate) &&
-                Objects.equals(arrivalId, migrationDTO.arrivalId) &&
-                Objects.equals(arrivalDate, migrationDTO.arrivalDate) &&
-                Objects.equals(planeId, migrationDTO.planeId) &&
-                Objects.equals(cost, migrationDTO.cost) &&
-                Objects.equals(clazz, migrationDTO.clazz) &&
-                Objects.equals(placeNumber, migrationDTO.placeNumber);
+        MigrationDTO that = (MigrationDTO) o;
+        return migrationId == that.migrationId &&
+                departureId == that.departureId &&
+                arrivalId == that.arrivalId &&
+                planeId == that.planeId &&
+                placeNumber == that.placeNumber &&
+                Objects.equals(departureDate, that.departureDate) &&
+                Objects.equals(arrivalDate, that.arrivalDate);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(migrationId, departureId, departureDate, arrivalId, arrivalDate, planeId, cost, clazz, placeNumber);
+        return Objects.hash(migrationId, departureId, departureDate, arrivalId, arrivalDate, planeId, placeNumber);
     }
 }
