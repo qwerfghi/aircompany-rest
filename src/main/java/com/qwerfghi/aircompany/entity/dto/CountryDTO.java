@@ -18,6 +18,7 @@ public class CountryDTO {
     private String code2;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "code")
     public String getCode() {
         return code;

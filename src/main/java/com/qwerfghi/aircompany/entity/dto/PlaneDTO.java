@@ -12,6 +12,7 @@ public class PlaneDTO {
     private Integer economyClassCount;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "plane_id")
     public Integer getPlaneId() {
         return planeId;

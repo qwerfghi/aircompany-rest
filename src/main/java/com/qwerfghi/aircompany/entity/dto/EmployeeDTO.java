@@ -14,6 +14,7 @@ public class EmployeeDTO {
     private Integer personId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "employee_id")
     public Integer getEmployeeId() {
         return employeeId;

@@ -19,6 +19,7 @@ public class PersonDTO {
     private Integer addressId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "person_id")
     public Integer getPersonId() {
         return personId;

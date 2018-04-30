@@ -11,6 +11,7 @@ public class FlightDTO {
     private Integer migrationId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "flight_id")
     public Integer getFlightId() {
         return flightId;

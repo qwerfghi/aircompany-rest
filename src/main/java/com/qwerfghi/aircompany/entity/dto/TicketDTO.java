@@ -13,6 +13,7 @@ public class TicketDTO {
     private Integer passengerId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ticket_id")
     public Integer getTicketId() {
         return ticketId;

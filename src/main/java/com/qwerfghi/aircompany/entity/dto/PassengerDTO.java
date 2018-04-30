@@ -18,6 +18,7 @@ public class PassengerDTO {
     private Integer addressId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "passenger_id")
     public Integer getPassengerId() {
         return passengerId;

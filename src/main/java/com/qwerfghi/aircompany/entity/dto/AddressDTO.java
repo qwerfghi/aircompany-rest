@@ -17,6 +17,7 @@ public class AddressDTO {
     private Integer apartmentNumber;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "address_id")
     public Integer getAddressId() {
         return addressId;

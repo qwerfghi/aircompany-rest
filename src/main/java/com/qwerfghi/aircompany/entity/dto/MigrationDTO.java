@@ -15,6 +15,7 @@ public class MigrationDTO {
     private Integer planeId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "migration_id")
     public Integer getMigrationId() {
         return migrationId;
