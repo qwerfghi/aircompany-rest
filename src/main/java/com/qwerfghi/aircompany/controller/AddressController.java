@@ -37,8 +37,9 @@ public class AddressController {
         addressService.deleteAddress(id);
     }
 
-    @PutMapping
-    public void updateAddress(@RequestBody AddressDTO addressDTO) {
+    @PutMapping("/{id}")
+    public void updateAddress(@PathVariable("id") int id, @RequestBody AddressDTO addressDTO) {
+        addressDTO.setAddressId(id);
         addressService.updateAddress(addressDTO);
     }
 }

@@ -37,8 +37,9 @@ public class TicketController {
         ticketService.deleteTicket(id);
     }
 
-    @PutMapping
-    public void updateTicket(@RequestBody TicketDTO ticketDTO) {
+    @PutMapping("/{id}")
+    public void updateTicket(@PathVariable("id") int id, @RequestBody TicketDTO ticketDTO) {
+        ticketDTO.setTicketId(id);
         ticketService.updateTicket(ticketDTO);
     }
 }

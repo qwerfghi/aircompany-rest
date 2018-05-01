@@ -37,8 +37,9 @@ public class CountryController {
         countryService.deleteCountry(code);
     }
 
-    @PutMapping
-    public void updateCountry(@RequestBody CountryDTO countryDTO) {
+    @PutMapping("/{code}")
+    public void updateCountry(@PathVariable("code") String code, @RequestBody CountryDTO countryDTO) {
+        countryDTO.setCode(code);
         countryService.updateCountry(countryDTO);
     }
 }

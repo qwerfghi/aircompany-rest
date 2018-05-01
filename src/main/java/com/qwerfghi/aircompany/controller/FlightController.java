@@ -37,8 +37,9 @@ public class FlightController {
         flightService.deleteFlight(id);
     }
 
-    @PutMapping
-    public void updateFlight(@RequestBody FlightDTO flightDTO) {
+    @PutMapping("/{id}")
+    public void updateFlight(@PathVariable("id") int id, @RequestBody FlightDTO flightDTO) {
+        flightDTO.setFlightId(id);
         flightService.updateFlight(flightDTO);
     }
 }

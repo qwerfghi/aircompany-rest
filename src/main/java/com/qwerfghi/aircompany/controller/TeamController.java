@@ -37,8 +37,9 @@ public class TeamController {
         teamService.deleteTeam(id);
     }
 
-    @PutMapping
-    public void updateTeam(@RequestBody TeamDTO teamDTO) {
+    @PutMapping("/{id}")
+    public void updateTeam(@PathVariable("id") int id, @RequestBody TeamDTO teamDTO) {
+        teamDTO.setTeamId(id);
         teamService.updateTeam(teamDTO);
     }
 }

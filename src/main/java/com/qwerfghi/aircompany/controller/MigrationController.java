@@ -37,8 +37,9 @@ public class MigrationController {
         migrationService.deleteMigration(id);
     }
 
-    @PutMapping
-    public void updateMigration(@RequestBody MigrationDTO migrationDTO) {
+    @PutMapping("/{id}")
+    public void updateMigration(@PathVariable("id") int id, @RequestBody MigrationDTO migrationDTO) {
+        migrationDTO.setMigrationId(id);
         migrationService.updateMigration(migrationDTO);
     }
 }

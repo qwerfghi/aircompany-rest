@@ -37,8 +37,9 @@ public class PassengerController {
         passengerService.deletePassenger(id);
     }
 
-    @PutMapping
-    public void updatePassenger(@RequestBody PassengerDTO passengerDTO) {
+    @PutMapping("/{id}")
+    public void updatePassenger(@PathVariable("id") int id, @RequestBody PassengerDTO passengerDTO) {
+        passengerDTO.setPassengerId(id);
         passengerService.updatePassenger(passengerDTO);
     }
 }

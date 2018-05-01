@@ -11,14 +11,12 @@ public class CountryDTO {
     private String continent;
     private String region;
     private Double surfaceArea;
-    private Short indepYear;
     private Integer population;
     private String localName;
     private String governmentForm;
     private String code2;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "code")
     public String getCode() {
         return code;
@@ -66,16 +64,6 @@ public class CountryDTO {
 
     public void setSurfaceArea(Double surfaceArea) {
         this.surfaceArea = surfaceArea;
-    }
-
-    @Basic
-    @Column(name = "indep_year")
-    public Short getIndepYear() {
-        return indepYear;
-    }
-
-    public void setIndepYear(Short indepYear) {
-        this.indepYear = indepYear;
     }
 
     @Basic
@@ -128,7 +116,6 @@ public class CountryDTO {
                 Objects.equals(continent, that.continent) &&
                 Objects.equals(region, that.region) &&
                 Objects.equals(surfaceArea, that.surfaceArea) &&
-                Objects.equals(indepYear, that.indepYear) &&
                 Objects.equals(population, that.population) &&
                 Objects.equals(localName, that.localName) &&
                 Objects.equals(governmentForm, that.governmentForm) &&
@@ -138,6 +125,6 @@ public class CountryDTO {
     @Override
     public int hashCode() {
 
-        return Objects.hash(code, name, continent, region, surfaceArea, indepYear, population, localName, governmentForm, code2);
+        return Objects.hash(code, name, continent, region, surfaceArea, population, localName, governmentForm, code2);
     }
 }

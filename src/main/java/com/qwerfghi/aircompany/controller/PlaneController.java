@@ -37,8 +37,9 @@ public class PlaneController {
         planeService.deletePlane(id);
     }
 
-    @PutMapping
-    public void updatePlane(@RequestBody PlaneDTO planeDTO) {
+    @PutMapping("/{id}")
+    public void updatePlane(@PathVariable("id") int id, @RequestBody PlaneDTO planeDTO) {
+        planeDTO.setPlaneId(id);
         planeService.updatePlane(planeDTO);
     }
 }

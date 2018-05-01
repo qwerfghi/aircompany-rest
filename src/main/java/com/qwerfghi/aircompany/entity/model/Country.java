@@ -12,7 +12,6 @@ public class Country {
     private Continent continent;
     private String region;
     private Double surfaceArea;
-    private Short indepYear;
     private Integer population;
     private String localName;
     private String governmentForm;
@@ -66,16 +65,6 @@ public class Country {
 
     public void setSurfaceArea(Double surfaceArea) {
         this.surfaceArea = surfaceArea;
-    }
-
-    @Basic
-    @Column(name = "indep_year")
-    public Short getIndepYear() {
-        return indepYear;
-    }
-
-    public void setIndepYear(Short indepYear) {
-        this.indepYear = indepYear;
     }
 
     @Basic
