@@ -1,16 +1,19 @@
 package com.qwerfghi.aircompany.entity.dto;
 
 import javax.persistence.*;
-import java.util.Objects;
 
 @Entity
 @Table(name = "ticket", schema = "aircompany")
 public class TicketDTO {
     private Integer ticketId;
-    private Integer cost;
-    private String clazz;
-    private Integer placeNumber;
     private Integer passengerId;
+    private String clazz;
+    private Boolean status;
+    private Boolean baggageAvailable;
+    private Boolean exchangeAvailable;
+    private Boolean returnAvailable;
+    private Integer migrationId;
+    private Integer cost;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,16 +27,6 @@ public class TicketDTO {
     }
 
     @Basic
-    @Column(name = "cost")
-    public Integer getCost() {
-        return cost;
-    }
-
-    public void setCost(Integer cost) {
-        this.cost = cost;
-    }
-
-    @Basic
     @Column(name = "class")
     public String getClazz() {
         return clazz;
@@ -44,13 +37,63 @@ public class TicketDTO {
     }
 
     @Basic
-    @Column(name = "place_number")
-    public Integer getPlaceNumber() {
-        return placeNumber;
+    @Column(name = "status")
+    public Boolean getStatus() {
+        return status;
     }
 
-    public void setPlaceNumber(Integer placeNumber) {
-        this.placeNumber = placeNumber;
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    @Basic
+    @Column(name = "baggage_available")
+    public Boolean getBaggageAvailable() {
+        return baggageAvailable;
+    }
+
+    public void setBaggageAvailable(Boolean baggageAvailable) {
+        this.baggageAvailable = baggageAvailable;
+    }
+
+    @Basic
+    @Column(name = "exchange_available")
+    public Boolean getExchangeAvailable() {
+        return exchangeAvailable;
+    }
+
+    public void setExchangeAvailable(Boolean exchangeAvailable) {
+        this.exchangeAvailable = exchangeAvailable;
+    }
+
+    @Basic
+    @Column(name = "return_available")
+    public Boolean getReturnAvailable() {
+        return returnAvailable;
+    }
+
+    public void setReturnAvailable(Boolean returnAvailable) {
+        this.returnAvailable = returnAvailable;
+    }
+
+    @Basic
+    @Column(name = "cost")
+    public Integer getCost() {
+        return cost;
+    }
+
+    public void setCost(Integer cost) {
+        this.cost = cost;
+    }
+
+    @Basic
+    @Column(name = "migration_id")
+    public Integer getMigrationId() {
+        return migrationId;
+    }
+
+    public void setMigrationId(Integer migrationId) {
+        this.migrationId = migrationId;
     }
 
     @Basic
@@ -61,23 +104,5 @@ public class TicketDTO {
 
     public void setPassengerId(Integer passengerId) {
         this.passengerId = passengerId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TicketDTO ticketDTO = (TicketDTO) o;
-        return Objects.equals(ticketId, ticketDTO.ticketId) &&
-                Objects.equals(cost, ticketDTO.cost) &&
-                Objects.equals(clazz, ticketDTO.clazz) &&
-                Objects.equals(placeNumber, ticketDTO.placeNumber) &&
-                Objects.equals(passengerId, ticketDTO.passengerId);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(ticketId, cost, clazz, placeNumber, passengerId);
     }
 }

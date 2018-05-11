@@ -8,11 +8,14 @@ import java.util.Objects;
 public class PlaneDTO {
     private Integer planeId;
     private String model;
+    private Integer hoursInflight;
     private Integer businessClassCount;
     private Integer economyClassCount;
+    private Integer baggageCount;
+    private String registrationNumber;
+    private String status;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "plane_id")
     public Integer getPlaneId() {
         return planeId;
@@ -30,6 +33,16 @@ public class PlaneDTO {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    @Basic
+    @Column(name = "hours_inflight")
+    public Integer getHoursInflight() {
+        return hoursInflight;
+    }
+
+    public void setHoursInflight(Integer hoursInflight) {
+        this.hoursInflight = hoursInflight;
     }
 
     @Basic
@@ -52,6 +65,36 @@ public class PlaneDTO {
         this.economyClassCount = economyClassCount;
     }
 
+    @Basic
+    @Column(name = "baggage_count")
+    public Integer getBaggageCount() {
+        return baggageCount;
+    }
+
+    public void setBaggageCount(Integer baggageCount) {
+        this.baggageCount = baggageCount;
+    }
+
+    @Basic
+    @Column(name = "registration_number")
+    public String getRegistrationNumber() {
+        return registrationNumber;
+    }
+
+    public void setRegistrationNumber(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
+    }
+
+    @Basic
+    @Column(name = "status")
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -59,13 +102,17 @@ public class PlaneDTO {
         PlaneDTO planeDTO = (PlaneDTO) o;
         return Objects.equals(planeId, planeDTO.planeId) &&
                 Objects.equals(model, planeDTO.model) &&
+                Objects.equals(hoursInflight, planeDTO.hoursInflight) &&
                 Objects.equals(businessClassCount, planeDTO.businessClassCount) &&
-                Objects.equals(economyClassCount, planeDTO.economyClassCount);
+                Objects.equals(economyClassCount, planeDTO.economyClassCount) &&
+                Objects.equals(baggageCount, planeDTO.baggageCount) &&
+                Objects.equals(registrationNumber, planeDTO.registrationNumber) &&
+                Objects.equals(status, planeDTO.status);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(planeId, model, businessClassCount, economyClassCount);
+        return Objects.hash(planeId, model, hoursInflight, businessClassCount, economyClassCount, baggageCount, registrationNumber, status);
     }
 }

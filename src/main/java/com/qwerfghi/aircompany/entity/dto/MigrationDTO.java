@@ -1,8 +1,9 @@
 package com.qwerfghi.aircompany.entity.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
-import java.sql.Date;
-import java.util.Objects;
+import java.util.Date;
 
 @Entity
 @Table(name = "migration", schema = "aircompany")
@@ -26,6 +27,32 @@ public class MigrationDTO {
     }
 
     @Basic
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "departure_date")
+    @JsonFormat
+            (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+    public Date getDepartureDate() {
+        return departureDate;
+    }
+
+    public void setDepartureDate(Date departureDate) {
+        this.departureDate = departureDate;
+    }
+
+    @Basic
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "arrival_date")
+    @JsonFormat
+            (shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
+    public Date getArrivalDate() {
+        return arrivalDate;
+    }
+
+    public void setArrivalDate(Date arrivalDate) {
+        this.arrivalDate = arrivalDate;
+    }
+
+    @Basic
     @Column(name = "departure_id")
     public Integer getDepartureId() {
         return departureId;
@@ -33,16 +60,6 @@ public class MigrationDTO {
 
     public void setDepartureId(Integer departureId) {
         this.departureId = departureId;
-    }
-
-    @Basic
-    @Column(name = "departure_date")
-    public Date getDepartureDate() {
-        return departureDate;
-    }
-
-    public void setDepartureDate(Date departureDate) {
-        this.departureDate = departureDate;
     }
 
     @Basic
@@ -56,16 +73,6 @@ public class MigrationDTO {
     }
 
     @Basic
-    @Column(name = "arrival_date")
-    public Date getArrivalDate() {
-        return arrivalDate;
-    }
-
-    public void setArrivalDate(Date arrivalDate) {
-        this.arrivalDate = arrivalDate;
-    }
-
-    @Basic
     @Column(name = "plane_id")
     public Integer getPlaneId() {
         return planeId;
@@ -73,24 +80,5 @@ public class MigrationDTO {
 
     public void setPlaneId(Integer planeId) {
         this.planeId = planeId;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        MigrationDTO that = (MigrationDTO) o;
-        return Objects.equals(migrationId, that.migrationId) &&
-                Objects.equals(departureId, that.departureId) &&
-                Objects.equals(departureDate, that.departureDate) &&
-                Objects.equals(arrivalId, that.arrivalId) &&
-                Objects.equals(arrivalDate, that.arrivalDate) &&
-                Objects.equals(planeId, that.planeId);
-    }
-
-    @Override
-    public int hashCode() {
-
-        return Objects.hash(migrationId, departureId, departureDate, arrivalId, arrivalDate, planeId);
     }
 }

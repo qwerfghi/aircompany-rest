@@ -100,7 +100,7 @@ public class Person {
         this.email = email;
     }
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "country", foreignKey = @ForeignKey(name = "person_country_fk"))
     public Country getCountry() {
         return country;

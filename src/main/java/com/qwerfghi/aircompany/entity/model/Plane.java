@@ -1,5 +1,7 @@
 package com.qwerfghi.aircompany.entity.model;
 
+import com.qwerfghi.aircompany.entity.enums.PlaneStatus;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -8,8 +10,12 @@ import java.util.Set;
 public class Plane {
     private Integer planeId;
     private String model;
+    private Integer hoursInflight;
     private Integer businessClassCount;
     private Integer economyClassCount;
+    private Integer baggageCount;
+    private String registrationNumber;
+    private PlaneStatus status;
     private Set<Employee> employees;
 
     @Id
@@ -54,7 +60,7 @@ public class Plane {
     }
 
     @ManyToMany
-    @JoinTable(name = "team",
+    @JoinTable(name = "plane_team",
             joinColumns = @JoinColumn(name = "plane_id", foreignKey = @ForeignKey(name = "team_plane_fk")),
             inverseJoinColumns = @JoinColumn(name = "employee_id", foreignKey = @ForeignKey(name = "team_employee_fk")))
     public Set<Employee> getEmployees() {
@@ -63,5 +69,45 @@ public class Plane {
 
     public void setEmployees(Set<Employee> employees) {
         this.employees = employees;
+    }
+
+    @Basic
+    @Column(name = "hours_inflight")
+    public Integer getHoursInflight() {
+        return hoursInflight;
+    }
+
+    public void setHoursInflight(Integer hoursInflight) {
+        this.hoursInflight = hoursInflight;
+    }
+
+    @Basic
+    @Column(name = "baggage_count")
+    public Integer getBaggageCount() {
+        return baggageCount;
+    }
+
+    public void setBaggageCount(Integer baggageCount) {
+        this.baggageCount = baggageCount;
+    }
+
+    @Basic
+    @Column(name = "registration_number")
+    public String getRegistrationNumber() {
+        return registrationNumber;
+    }
+
+    public void setRegistrationNumber(String registrationNumber) {
+        this.registrationNumber = registrationNumber;
+    }
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    public PlaneStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(PlaneStatus status) {
+        this.status = status;
     }
 }

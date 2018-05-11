@@ -1,28 +1,16 @@
 package com.qwerfghi.aircompany.entity.dto;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
-@Table(name = "team", schema = "aircompany")
-public class TeamDTO {
-    private Integer teamId;
+public class PlaneTeamDTOPK implements Serializable {
     private Integer planeId;
     private Integer employeeId;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "team_id")
-    public Integer getTeamId() {
-        return teamId;
-    }
-
-    public void setTeamId(Integer teamId) {
-        this.teamId = teamId;
-    }
-
-    @Basic
     @Column(name = "plane_id")
+    @Id
     public Integer getPlaneId() {
         return planeId;
     }
@@ -31,8 +19,8 @@ public class TeamDTO {
         this.planeId = planeId;
     }
 
-    @Basic
     @Column(name = "employee_id")
+    @Id
     public Integer getEmployeeId() {
         return employeeId;
     }
@@ -45,15 +33,14 @@ public class TeamDTO {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TeamDTO teamDTO = (TeamDTO) o;
-        return Objects.equals(teamId, teamDTO.teamId) &&
-                Objects.equals(planeId, teamDTO.planeId) &&
-                Objects.equals(employeeId, teamDTO.employeeId);
+        PlaneTeamDTOPK that = (PlaneTeamDTOPK) o;
+        return Objects.equals(planeId, that.planeId) &&
+                Objects.equals(employeeId, that.employeeId);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(teamId, planeId, employeeId);
+        return Objects.hash(planeId, employeeId);
     }
 }
