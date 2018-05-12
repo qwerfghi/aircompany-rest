@@ -2,6 +2,7 @@ package com.qwerfghi.aircompany.entity.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "migration", schema = "aircompany")
@@ -12,6 +13,8 @@ public class Migration {
     private City arrival;
     private Date arrivalDate;
     private Plane plane;
+    private Integer cost;
+    private List<Ticket> tickets;
 
     @Id
     @Column(name = "migration_id")
@@ -73,5 +76,28 @@ public class Migration {
 
     public void setPlane(Plane plane) {
         this.plane = plane;
+    }
+
+    @Basic
+    @Column(name = "cost")
+    public Integer getCost() {
+        return cost;
+    }
+
+    public void setCost(Integer cost) {
+        this.cost = cost;
+    }
+
+    @OneToMany(
+            mappedBy = "migration",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 }

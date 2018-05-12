@@ -1,7 +1,7 @@
 package com.qwerfghi.aircompany.service;
 
 import com.qwerfghi.aircompany.entity.dto.PassengerDTO;
-import com.qwerfghi.aircompany.repository.PassengerRepository;
+import com.qwerfghi.aircompany.repository.dto.PassengerDTORepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,32 +11,32 @@ import java.util.List;
 @Service
 @Transactional
 public class PassengerService {
-    private final PassengerRepository passengerRepository;
+    private final PassengerDTORepository passengerDTORepository;
 
     @Autowired
-    public PassengerService(PassengerRepository passengerRepository) {
-        this.passengerRepository = passengerRepository;
+    public PassengerService(PassengerDTORepository passengerDTORepository) {
+        this.passengerDTORepository = passengerDTORepository;
     }
 
     @Transactional(readOnly = true)
     public PassengerDTO getPassengerById(int id) {
-        return passengerRepository.findOne(id);
+        return passengerDTORepository.findOne(id);
     }
 
     @Transactional(readOnly = true)
     public List<PassengerDTO> getAllPassengers() {
-        return passengerRepository.findAll();
+        return passengerDTORepository.findAll();
     }
 
     public void addPassenger(PassengerDTO passengerDTO) {
-        passengerRepository.save(passengerDTO);
+        passengerDTORepository.save(passengerDTO);
     }
 
     public void deletePassenger(int id) {
-        passengerRepository.delete(id);
+        passengerDTORepository.delete(id);
     }
 
     public void updatePassenger(PassengerDTO passengerDTO) {
-        passengerRepository.save(passengerDTO);
+        passengerDTORepository.save(passengerDTO);
     }
 }

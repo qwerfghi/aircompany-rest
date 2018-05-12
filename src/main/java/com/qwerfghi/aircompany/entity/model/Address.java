@@ -12,6 +12,7 @@ public class Address {
     private String city;
     private String district;
     private String village;
+    private String street;
     private Integer houseNumber;
     private Integer apartmentNumber;
 
@@ -74,6 +75,16 @@ public class Address {
 
     public void setDistrict(String district) {
         this.district = district;
+    }
+
+    @Basic
+    @Column(name = "street")
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
     }
 
     @Basic

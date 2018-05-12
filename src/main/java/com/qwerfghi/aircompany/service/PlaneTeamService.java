@@ -1,7 +1,7 @@
 package com.qwerfghi.aircompany.service;
 
 import com.qwerfghi.aircompany.entity.dto.PlaneTeamDTO;
-import com.qwerfghi.aircompany.repository.PlaneTeamRepository;
+import com.qwerfghi.aircompany.repository.dto.PlaneTeamDTORepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,10 +11,10 @@ import java.util.List;
 @Service
 @Transactional
 public class PlaneTeamService {
-    private final PlaneTeamRepository teamRepository;
+    private final PlaneTeamDTORepository teamRepository;
 
     @Autowired
-    public PlaneTeamService(PlaneTeamRepository teamRepository) {
+    public PlaneTeamService(PlaneTeamDTORepository teamRepository) {
         this.teamRepository = teamRepository;
     }
 

@@ -1,6 +1,7 @@
 package com.qwerfghi.aircompany.controller;
 
 import com.qwerfghi.aircompany.entity.dto.UserDTO;
+import com.qwerfghi.aircompany.entity.model.User;
 import com.qwerfghi.aircompany.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +31,11 @@ public class UserController {
     @PostMapping
     public void addUser(@RequestBody UserDTO userDTO) {
         userService.addUser(userDTO);
+    }
+
+    @PostMapping("/register")
+    public void addUser(@RequestBody User user) {
+        userService.registerNewUser(user);
     }
 
     @DeleteMapping("/{id}")

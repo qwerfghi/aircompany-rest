@@ -1,9 +1,7 @@
 package com.qwerfghi.aircompany.repository;
 
-import com.qwerfghi.aircompany.entity.dto.AddressDTO;
+import com.qwerfghi.aircompany.entity.model.Address;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
-public interface AddressRepository extends JpaRepository<AddressDTO, Integer> {
+public interface AddressRepository extends JpaRepository<Address, Integer> {
 }

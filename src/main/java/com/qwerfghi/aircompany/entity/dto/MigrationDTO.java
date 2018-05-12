@@ -14,6 +14,7 @@ public class MigrationDTO {
     private Integer arrivalId;
     private Date arrivalDate;
     private Integer planeId;
+    private Integer cost;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -80,5 +81,15 @@ public class MigrationDTO {
 
     public void setPlaneId(Integer planeId) {
         this.planeId = planeId;
+    }
+
+    @Basic
+    @Column(name = "cost")
+    public Integer getCost() {
+        return cost;
+    }
+
+    public void setCost(Integer cost) {
+        this.cost = cost;
     }
 }

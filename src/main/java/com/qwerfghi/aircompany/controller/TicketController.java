@@ -1,6 +1,8 @@
 package com.qwerfghi.aircompany.controller;
 
+import com.qwerfghi.aircompany.entity.dto.MigrationDTO;
 import com.qwerfghi.aircompany.entity.dto.TicketDTO;
+import com.qwerfghi.aircompany.entity.model.Ticket;
 import com.qwerfghi.aircompany.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +32,11 @@ public class TicketController {
     @PostMapping
     public void addTicket(@RequestBody TicketDTO ticketDTO) {
         ticketService.addTicket(ticketDTO);
+    }
+
+    @PostMapping("/search")
+    public List<MigrationDTO> searchTickets(@RequestBody Ticket ticket) {
+        return ticketService.getAvailableMigrations(ticket);
     }
 
     @DeleteMapping("/{id}")

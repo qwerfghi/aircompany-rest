@@ -1,7 +1,7 @@
 package com.qwerfghi.aircompany.service;
 
 import com.qwerfghi.aircompany.entity.dto.PlaneDTO;
-import com.qwerfghi.aircompany.repository.PlaneRepository;
+import com.qwerfghi.aircompany.repository.dto.PlaneDTORepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,32 +11,32 @@ import java.util.List;
 @Service
 @Transactional
 public class PlaneService {
-    private final PlaneRepository planeRepository;
+    private final PlaneDTORepository planeDTORepository;
 
     @Autowired
-    public PlaneService(PlaneRepository planeRepository) {
-        this.planeRepository = planeRepository;
+    public PlaneService(PlaneDTORepository planeDTORepository) {
+        this.planeDTORepository = planeDTORepository;
     }
 
     @Transactional(readOnly = true)
     public PlaneDTO getPlaneById(int id) {
-        return planeRepository.findOne(id);
+        return planeDTORepository.findOne(id);
     }
 
     @Transactional(readOnly = true)
     public List<PlaneDTO> getAllPlanes() {
-        return planeRepository.findAll();
+        return planeDTORepository.findAll();
     }
 
     public void addPlane(PlaneDTO planeDTO) {
-        planeRepository.save(planeDTO);
+        planeDTORepository.save(planeDTO);
     }
 
     public void deletePlane(int id) {
-        planeRepository.delete(id);
+        planeDTORepository.delete(id);
     }
 
     public void updatePlane(PlaneDTO planeDTO) {
-        planeRepository.save(planeDTO);
+        planeDTORepository.save(planeDTO);
     }
 }

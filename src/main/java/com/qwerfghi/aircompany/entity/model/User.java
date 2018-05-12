@@ -54,7 +54,7 @@ public class User {
         this.userRole = userRole;
     }
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", foreignKey = @ForeignKey(name = "user_person_fk"))
     public Person getPerson() {
         return person;

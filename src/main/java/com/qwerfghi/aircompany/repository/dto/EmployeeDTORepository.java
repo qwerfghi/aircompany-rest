@@ -1,9 +1,9 @@
-package com.qwerfghi.aircompany.repository;
+package com.qwerfghi.aircompany.repository.dto;
 
 import com.qwerfghi.aircompany.entity.dto.EmployeeDTO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EmployeeRepository extends JpaRepository<EmployeeDTO, Integer> {
+public interface EmployeeDTORepository extends JpaRepository<EmployeeDTO, Integer> {
 }

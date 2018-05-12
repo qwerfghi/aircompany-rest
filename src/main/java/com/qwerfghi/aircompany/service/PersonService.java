@@ -1,7 +1,7 @@
 package com.qwerfghi.aircompany.service;
 
 import com.qwerfghi.aircompany.entity.dto.PersonDTO;
-import com.qwerfghi.aircompany.repository.PersonRepository;
+import com.qwerfghi.aircompany.repository.dto.PersonDTORepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,32 +11,32 @@ import java.util.List;
 @Service
 @Transactional
 public class PersonService {
-    private final PersonRepository personRepository;
+    private final PersonDTORepository personDTORepository;
 
     @Autowired
-    public PersonService(PersonRepository personRepository) {
-        this.personRepository = personRepository;
+    public PersonService(PersonDTORepository personDTORepository) {
+        this.personDTORepository = personDTORepository;
     }
 
     @Transactional(readOnly = true)
     public PersonDTO getPersonById(int id) {
-        return personRepository.findOne(id);
+        return personDTORepository.findOne(id);
     }
 
     @Transactional(readOnly = true)
     public List<PersonDTO> getAllPersons() {
-        return personRepository.findAll();
+        return personDTORepository.findAll();
     }
 
     public void addPerson(PersonDTO personDTO) {
-        personRepository.save(personDTO);
+        personDTORepository.save(personDTO);
     }
 
     public void deletePerson(int id) {
-        personRepository.delete(id);
+        personDTORepository.delete(id);
     }
 
     public void updatePerson(PersonDTO personDTO) {
-        personRepository.save(personDTO);
+        personDTORepository.save(personDTO);
     }
 }
