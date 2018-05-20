@@ -1,6 +1,5 @@
 package com.qwerfghi.aircompany.controller;
 
-import com.qwerfghi.aircompany.entity.dto.MigrationDTO;
 import com.qwerfghi.aircompany.entity.dto.TicketDTO;
 import com.qwerfghi.aircompany.entity.model.Ticket;
 import com.qwerfghi.aircompany.service.TicketService;
@@ -35,8 +34,8 @@ public class TicketController {
     }
 
     @PostMapping("/search")
-    public List<MigrationDTO> searchTickets(@RequestBody Ticket ticket) {
-        return ticketService.getAvailableMigrations(ticket);
+    public List<Ticket> searchTickets(@RequestBody Ticket ticket) {
+        return ticketService.getAvailableTickets(ticket);
     }
 
     @DeleteMapping("/{id}")
@@ -48,5 +47,10 @@ public class TicketController {
     public void updateTicket(@PathVariable("id") int id, @RequestBody TicketDTO ticketDTO) {
         ticketDTO.setTicketId(id);
         ticketService.updateTicket(ticketDTO);
+    }
+
+    @PostMapping("/buy")
+    public void addTicket(@RequestBody Ticket ticket) {
+        ticketService.buyTicket(ticket);
     }
 }

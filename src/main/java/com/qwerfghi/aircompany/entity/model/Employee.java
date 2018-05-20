@@ -1,5 +1,7 @@
 package com.qwerfghi.aircompany.entity.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -75,8 +77,9 @@ public class Employee {
         this.person = person;
     }
 
+    @JsonIgnore
     @ManyToMany
-    @JoinTable(name = "team",
+    @JoinTable(name = "plane_team",
             joinColumns = @JoinColumn(name = "employee_id", foreignKey = @ForeignKey(name = "team_employee_fk")),
             inverseJoinColumns = @JoinColumn(name = "plane_id", foreignKey = @ForeignKey(name = "team_plane_fk")))
     public Set<Plane> getPlanes() {

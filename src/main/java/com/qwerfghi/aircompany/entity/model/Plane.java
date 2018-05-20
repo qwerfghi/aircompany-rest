@@ -1,5 +1,6 @@
 package com.qwerfghi.aircompany.entity.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.qwerfghi.aircompany.entity.enums.PlaneStatus;
 
 import javax.persistence.*;
@@ -59,6 +60,7 @@ public class Plane {
         this.economyClassCount = economyClassCount;
     }
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "plane_team",
             joinColumns = @JoinColumn(name = "plane_id", foreignKey = @ForeignKey(name = "team_plane_fk")),

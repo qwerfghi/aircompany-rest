@@ -6,7 +6,6 @@ import com.qwerfghi.aircompany.entity.model.Country;
 import com.qwerfghi.aircompany.entity.model.User;
 import com.qwerfghi.aircompany.repository.CountryRepository;
 import com.qwerfghi.aircompany.repository.UserRepository;
-import com.qwerfghi.aircompany.repository.dto.AddressDTORepository;
 import com.qwerfghi.aircompany.repository.dto.UserDTORepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,14 +18,12 @@ import java.util.List;
 public class UserService {
     private final UserDTORepository userDTORepository;
     private final UserRepository userRepository;
-    private final AddressDTORepository addressDTORepository;
     private final CountryRepository countryRepository;
 
     @Autowired
-    public UserService(UserDTORepository userDTORepository, UserRepository userRepository, AddressDTORepository addressDTORepository, CountryRepository countryRepository) {
+    public UserService(UserDTORepository userDTORepository, UserRepository userRepository, CountryRepository countryRepository) {
         this.userDTORepository = userDTORepository;
         this.userRepository = userRepository;
-        this.addressDTORepository = addressDTORepository;
         this.countryRepository = countryRepository;
     }
 
@@ -50,6 +47,10 @@ public class UserService {
 
     public void updateUser(UserDTO userDTO) {
         userDTORepository.save(userDTO);
+    }
+
+    public User findByUsernameAndPassword(String username, String password) {
+        return userRepository.findByUsernameAndPassword(username, password);
     }
 
     public void registerNewUser(User user) {

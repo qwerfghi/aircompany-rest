@@ -19,8 +19,13 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public UserDTO getTicket(@PathVariable("id") int id) {
+    public UserDTO getUser(@PathVariable("id") int id) {
         return userService.getUserById(id);
+    }
+
+    @PostMapping("/find")
+    public User findByUsername(@RequestBody UserDTO userDTO) {
+        return userService.findByUsernameAndPassword(userDTO.getUsername(), userDTO.getPassword());
     }
 
     @GetMapping
