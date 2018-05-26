@@ -50,7 +50,7 @@ public class TicketController {
     }
 
     @PostMapping("/buy")
-    public void addTicket(@RequestBody Ticket ticket) {
+    public void buyTicket(@RequestBody Ticket ticket) {
         ticketService.buyTicket(ticket);
     }
 }
