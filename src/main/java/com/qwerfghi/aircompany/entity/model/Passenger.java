@@ -1,9 +1,11 @@
 package com.qwerfghi.aircompany.entity.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.qwerfghi.aircompany.entity.enums.Sex;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "passenger", schema = "aircompany")
@@ -17,6 +19,7 @@ public class Passenger {
     private String phone;
     private Country country;
     private Address address;
+    private List<Ticket> tickets;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -107,5 +110,15 @@ public class Passenger {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "passenger")
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
     }
 }

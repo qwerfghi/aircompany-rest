@@ -30,6 +30,9 @@ public class Ticket {
 
     @ManyToOne
     @JoinColumn(name = "passenger_id", foreignKey = @ForeignKey(name = "ticket_passenger_fk"))
+    /*@JsonManagedReference
+    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "passengerId")
+    @JsonIdentityReference(alwaysAsId = true)*/
     public Passenger getPassenger() {
         return passenger;
     }
