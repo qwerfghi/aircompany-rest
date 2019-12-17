@@ -6,10 +6,10 @@ apply plugin: 'kotlin'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'idea'
 
-def kotlin_version = '1.2.71'
-def hibernate_version = '5.2.13.Final'
+def hibernate_version = '5.4.10.Final'
 
 buildscript {
+    ext.kotlin_version = '1.3.60'
 
     repositories {
         mavenCentral()
