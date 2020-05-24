@@ -1,64 +1,34 @@
 package com.qwerfghi.aircompany.entity.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+
 import javax.persistence.*;
 
+@Data
 @Entity
 @Table(name = "city", schema = "aircompany")
 public class City {
-    private Integer cityId;
-    private String name;
-    private Country country;
-    private String district;
-    private Integer population;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "city_id")
-    public Integer getCityId() {
-        return cityId;
-    }
+    private Integer cityId;
 
-    public void setCityId(Integer cityId) {
-        this.cityId = cityId;
-    }
-
-    @Basic
     @Column(name = "name")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "country_code", foreignKey = @ForeignKey(name = "city_country_fk"))
-    public Country getCountry() {
-        return country;
-    }
+    @JsonIgnore
+    private Country country;
 
-    public void setCountry(Country country) {
-        this.country = country;
-    }
-
-    @Basic
     @Column(name = "district")
-    public String getDistrict() {
-        return district;
-    }
+    private String district;
 
-    public void setDistrict(String district) {
-        this.district = district;
-    }
-
-    @Basic
     @Column(name = "population")
-    public Integer getPopulation() {
-        return population;
-    }
+    private Integer population;
 
-    public void setPopulation(Integer population) {
-        this.population = population;
-    }
+    @Column(name = "country_code", insertable = false, updatable = false)
+    private String countryCode;
 }

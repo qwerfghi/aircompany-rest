@@ -3,22 +3,25 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
-def hibernate_version = '5.4.15.Final'
-
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+def hibernateVersion = '5.4.15.Final'
+def lombokPluginVersion = '1.18.12'
 
 dependencies {
-    implementation group: 'org.hibernate', name: 'hibernate-agroal', version: "$hibernate_version"
+    implementation group: 'org.hibernate', name: 'hibernate-agroal', version: "$hibernateVersion"
 
     implementation 'com.google.guava:guava:24.0-jre'
 
     implementation 'mysql:mysql-connector-java:8.0.11'
 
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: "$lombokPluginVersion"
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: "$lombokPluginVersion"
+
+    testCompileOnly group: 'org.projectlombok', name: 'lombok', version: "$lombokPluginVersion"
+    testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: "$lombokPluginVersion"
+
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.0.1.RELEASE'
     testCompile group: 'com.h2database', name: 'h2', version: '1.4.197'
-
 }
 
 compileJava.options.compilerArgs.add '-parameters'

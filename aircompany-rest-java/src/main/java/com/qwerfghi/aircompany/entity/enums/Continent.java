@@ -1,15 +1,22 @@
 package com.qwerfghi.aircompany.entity.enums;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 public enum Continent {
-    ASIA,
-    EUROPE,
-    @JsonProperty("NORTH AMERICA")
-    NORTH_AMERICA,
-    AFRICA,
-    OCEANIA,
-    ANTARCTICA,
-    @JsonProperty("SOUTH AMERICA")
-    SOUTH_AMERICA
+
+    ASIA("ASIA"),
+    EUROPE("EUROPE"),
+    NORTH_AMERICA("NORTH AMERICA"),
+    AFRICA("AFRICA"),
+    OCEANIA("OCEANIA"),
+    ANTARCTICA("ANTARCTICA"),
+    SOUTH_AMERICA("SOUTH AMERICA");
+
+    private final String name;
+
+    Continent(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
 }

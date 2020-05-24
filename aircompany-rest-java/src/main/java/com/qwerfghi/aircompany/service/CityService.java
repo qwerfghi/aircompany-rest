@@ -1,7 +1,7 @@
 package com.qwerfghi.aircompany.service;
 
-import com.qwerfghi.aircompany.entity.dto.CityDTO;
-import com.qwerfghi.aircompany.repository.dto.CityDTORepository;
+import com.qwerfghi.aircompany.entity.model.City;
+import com.qwerfghi.aircompany.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,24 +11,25 @@ import java.util.List;
 @Service
 @Transactional
 public class CityService {
-    private final CityDTORepository cityDTORepository;
+
+    private final CityRepository cityDTORepository;
 
     @Autowired
-    public CityService(CityDTORepository cityDTORepository) {
+    public CityService(CityRepository cityDTORepository) {
         this.cityDTORepository = cityDTORepository;
     }
 
     @Transactional(readOnly = true)
-    public CityDTO getCityById(int id) {
+    public City getCityById(int id) {
         return cityDTORepository.findOne(id);
     }
 
     @Transactional(readOnly = true)
-    public List<CityDTO> getAllCities() {
+    public List<City> getAllCities() {
         return cityDTORepository.findAll();
     }
 
-    public void addCity(CityDTO cityDTO) {
+    public void addCity(City cityDTO) {
         cityDTORepository.save(cityDTO);
     }
 
@@ -36,7 +37,7 @@ public class CityService {
         cityDTORepository.delete(id);
     }
 
-    public void updateCity(CityDTO cityDTO) {
+    public void updateCity(City cityDTO) {
         cityDTORepository.save(cityDTO);
     }
 }

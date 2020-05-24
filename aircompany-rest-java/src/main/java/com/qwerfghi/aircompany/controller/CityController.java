@@ -1,6 +1,6 @@
 package com.qwerfghi.aircompany.controller;
 
-import com.qwerfghi.aircompany.entity.dto.CityDTO;
+import com.qwerfghi.aircompany.entity.model.City;
 import com.qwerfghi.aircompany.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,18 +18,18 @@ public class CityController {
     }
 
     @GetMapping("/{id}")
-    public CityDTO getCity(@PathVariable("id") int id) {
+    public City getCity(@PathVariable("id") int id) {
         return cityService.getCityById(id);
     }
 
     @GetMapping
-    public List<CityDTO> getCities() {
+    public List<City> getCities() {
         return cityService.getAllCities();
     }
 
     @PostMapping
-    public void addCity(@RequestBody CityDTO cityDTO) {
-        cityService.addCity(cityDTO);
+    public void addCity(@RequestBody City city) {
+        cityService.addCity(city);
     }
 
     @DeleteMapping("/{id}")
@@ -38,8 +38,8 @@ public class CityController {
     }
 
     @PutMapping("/{id}")
-    public void updateCity(@PathVariable("id") int id, @RequestBody CityDTO cityDTO) {
-        cityDTO.setCityId(id);
-        cityService.updateCity(cityDTO);
+    public void updateCity(@PathVariable("id") int id, @RequestBody City city) {
+        city.setCityId(id);
+        cityService.updateCity(city);
     }
 }

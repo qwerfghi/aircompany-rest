@@ -37,7 +37,6 @@ public class Country {
         this.name = name;
     }
 
-    @Enumerated(EnumType.STRING)
     @Column(name = "continent")
     public Continent getContinent() {
         return continent;
