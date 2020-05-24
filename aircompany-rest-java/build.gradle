@@ -3,14 +3,13 @@ version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
-def hibernate_version = '5.2.13.Final'
+def hibernate_version = '5.4.15.Final'
 
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 dependencies {
-    implementation group: 'org.hibernate', name: 'hibernate-core', version: "$hibernate_version"
-    implementation group: 'org.hibernate', name: 'hibernate-entitymanager', version: "$hibernate_version"
+    implementation group: 'org.hibernate', name: 'hibernate-agroal', version: "$hibernate_version"
 
     implementation 'com.google.guava:guava:24.0-jre'
 

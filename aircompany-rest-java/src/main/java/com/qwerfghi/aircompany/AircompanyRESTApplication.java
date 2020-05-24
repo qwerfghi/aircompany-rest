@@ -9,6 +9,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @SpringBootApplication
 public class AircompanyRESTApplication {
+
     public static void main(String[] args) {
         SpringApplication.run(AircompanyRESTApplication.class, args);
     }
@@ -20,7 +21,7 @@ public class AircompanyRESTApplication {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD")
-                        .allowedOrigins("http://localhost:4200");
+                        .allowedOrigins("http://localhost:4200", "http://localhost:5200");
             }
         };
     }
