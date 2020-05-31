@@ -1,6 +1,6 @@
 package com.qwerfghi.aircompany.controller;
 
-import com.qwerfghi.aircompany.entity.dto.PersonDTO;
+import com.qwerfghi.aircompany.entity.model.Person;
 import com.qwerfghi.aircompany.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/persons")
 public class PersonController {
+
     private final PersonService personService;
 
     @Autowired
@@ -18,18 +19,18 @@ public class PersonController {
     }
 
     @GetMapping("/{id}")
-    public PersonDTO getPerson(@PathVariable("id") int id) {
+    public Person getPerson(@PathVariable("id") int id) {
         return personService.getPersonById(id);
     }
 
     @GetMapping
-    public List<PersonDTO> getPassengers() {
+    public List<Person> getPassengers() {
         return personService.getAllPersons();
     }
 
     @PostMapping
-    public void addPerson(@RequestBody PersonDTO personDTO) {
-        personService.addPerson(personDTO);
+    public void addPerson(@RequestBody Person person) {
+        personService.addPerson(person);
     }
 
     @DeleteMapping("/{id}")
@@ -38,8 +39,8 @@ public class PersonController {
     }
 
     @PutMapping("/{id}")
-    public void updatePerson(@PathVariable("id") int id, @RequestBody PersonDTO personDTO) {
-        personDTO.setPersonId(id);
-        personService.updatePerson(personDTO);
+    public void updatePerson(@PathVariable("id") int id, @RequestBody Person person) {
+        person.setPersonId(id);
+        personService.updatePerson(person);
     }
 }

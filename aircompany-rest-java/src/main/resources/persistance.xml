@@ -39,19 +39,7 @@
         -->
 
         <!-- The "class" elements specify names of managed persistable classes -->
-        <class>com.qwerfghi.aircompany.entity.dto.FlightDTO</class>
-        <class>com.qwerfghi.aircompany.entity.dto.MigrationDTO</class>
-        <class>com.qwerfghi.aircompany.entity.dto.AddressDTO</class>
-        <class>com.qwerfghi.aircompany.entity.dto.CityDTO</class>
-        <class>com.qwerfghi.aircompany.entity.dto.CountryDTO</class>
-        <class>com.qwerfghi.aircompany.entity.dto.CountryLanguageDTO</class>
-        <class>com.qwerfghi.aircompany.entity.dto.EmployeeDTO</class>
-        <class>com.qwerfghi.aircompany.entity.dto.PassengerDTO</class>
-        <class>com.qwerfghi.aircompany.entity.dto.PersonDTO</class>
-        <class>com.qwerfghi.aircompany.entity.dto.PlaneDTO</class>
-        <class>com.qwerfghi.aircompany.entity.dto.TeamDTO</class>
-        <class>com.qwerfghi.aircompany.entity.dto.TicketDTO</class>
-        <class>com.qwerfghi.aircompany.entity.dto.UserDTO</class>
+        <class>com.qwerfghi.aircompany.entity.model.City</class>
 
         <!-- Настройки для Hibernate -->
         <properties>

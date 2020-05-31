@@ -1,11 +1,9 @@
 package com.qwerfghi.aircompany.service;
 
-import com.qwerfghi.aircompany.entity.dto.TicketDTO;
 import com.qwerfghi.aircompany.entity.enums.TicketClass;
 import com.qwerfghi.aircompany.entity.model.*;
 import com.qwerfghi.aircompany.repository.TicketRepository;
 import com.qwerfghi.aircompany.repository.UserRepository;
-import com.qwerfghi.aircompany.repository.dto.TicketDTORepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,42 +19,40 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class TicketService {
-    private final TicketDTORepository ticketDTORepository;
+
     private final TicketRepository ticketRepository;
     private final UserRepository userRepository;
     private final EntityManager entityManager;
 
     @Autowired
-    public TicketService(TicketDTORepository ticketDTORepository,
-                         TicketRepository ticketRepository,
+    public TicketService(TicketRepository ticketRepository,
                          UserRepository userRepository,
                          EntityManager entityManager) {
-        this.ticketDTORepository = ticketDTORepository;
         this.ticketRepository = ticketRepository;
         this.userRepository = userRepository;
         this.entityManager = entityManager;
     }
 
     @Transactional(readOnly = true)
-    public TicketDTO getTicketById(int id) {
-        return ticketDTORepository.findOne(id);
+    public Ticket getTicketById(int id) {
+        return ticketRepository.findOne(id);
     }
 
     @Transactional(readOnly = true)
-    public List<TicketDTO> getAllTickets() {
-        return ticketDTORepository.findAll();
+    public List<Ticket> getAllTickets() {
+        return ticketRepository.findAll();
     }
 
-    public void addTicket(TicketDTO ticketDTO) {
-        ticketDTORepository.save(ticketDTO);
+    public void addTicket(Ticket ticket) {
+        ticketRepository.save(ticket);
     }
 
     public void deleteTicket(int id) {
-        ticketDTORepository.delete(id);
+        ticketRepository.delete(id);
     }
 
-    public void updateTicket(TicketDTO ticketDTO) {
-        ticketDTORepository.save(ticketDTO);
+    public void updateTicket(Ticket ticket) {
+        ticketRepository.save(ticket);
     }
 
     public void buyTicket(Ticket ticket) {

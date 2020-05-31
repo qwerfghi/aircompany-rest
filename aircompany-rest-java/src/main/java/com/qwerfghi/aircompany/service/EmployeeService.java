@@ -1,7 +1,7 @@
 package com.qwerfghi.aircompany.service;
 
-import com.qwerfghi.aircompany.entity.dto.EmployeeDTO;
-import com.qwerfghi.aircompany.repository.dto.EmployeeDTORepository;
+import com.qwerfghi.aircompany.entity.model.Employee;
+import com.qwerfghi.aircompany.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,32 +11,33 @@ import java.util.List;
 @Service
 @Transactional
 public class EmployeeService {
-    private final EmployeeDTORepository employeeDTORepository;
+
+    private final EmployeeRepository employeeRepository;
 
     @Autowired
-    public EmployeeService(EmployeeDTORepository employeeDTORepository) {
-        this.employeeDTORepository = employeeDTORepository;
+    public EmployeeService(EmployeeRepository employeeRepository) {
+        this.employeeRepository = employeeRepository;
     }
 
     @Transactional(readOnly = true)
-    public EmployeeDTO getEmployeeById(int id) {
-        return employeeDTORepository.findOne(id);
+    public Employee getEmployeeById(int id) {
+        return employeeRepository.findOne(id);
     }
 
     @Transactional(readOnly = true)
-    public List<EmployeeDTO> getAllEmployees() {
-        return employeeDTORepository.findAll();
+    public List<Employee> getAllEmployees() {
+        return employeeRepository.findAll();
     }
 
-    public void addEmployee(EmployeeDTO employeeDTO) {
-        employeeDTORepository.save(employeeDTO);
+    public void addEmployee(Employee employee) {
+        employeeRepository.save(employee);
     }
 
     public void deleteEmployee(int id) {
-        employeeDTORepository.delete(id);
+        employeeRepository.delete(id);
     }
 
-    public void updateEmployee(EmployeeDTO employeeDTO) {
-        employeeDTORepository.save(employeeDTO);
+    public void updateEmployee(Employee employee) {
+        employeeRepository.save(employee);
     }
 }
