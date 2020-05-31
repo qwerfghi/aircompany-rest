@@ -2,18 +2,13 @@ package com.qwerfghi.aircompany.service;
 
 import com.qwerfghi.aircompany.entity.enums.UserRole;
 import com.qwerfghi.aircompany.entity.model.Country;
-import com.qwerfghi.aircompany.entity.model.Passenger;
-import com.qwerfghi.aircompany.entity.model.Ticket;
 import com.qwerfghi.aircompany.entity.model.User;
 import com.qwerfghi.aircompany.repository.CountryRepository;
-import com.qwerfghi.aircompany.repository.TicketRepository;
 import com.qwerfghi.aircompany.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Service
@@ -22,18 +17,11 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final CountryRepository countryRepository;
-    private final TicketRepository ticketRepository;
-    private final EntityManager entityManager;
 
     @Autowired
-    public UserService(UserRepository userRepository,
-                       CountryRepository countryRepository,
-                       TicketRepository ticketRepository,
-                       EntityManager entityManager) {
+    public UserService(UserRepository userRepository, CountryRepository countryRepository) {
         this.userRepository = userRepository;
         this.countryRepository = countryRepository;
-        this.ticketRepository = ticketRepository;
-        this.entityManager = entityManager;
     }
 
     @Transactional(readOnly = true)
@@ -68,11 +56,5 @@ public class UserService {
         user.getPerson().setCountry(persistCountry);
         user.setUserRole(UserRole.USER);
         userRepository.save(user);
-    }
-
-    public List<Ticket> getUserTickets(User user) {
-        TypedQuery<Passenger> query = entityManager.createQuery("from Passenger p where p.passport = :passport", Passenger.class);
-        query.setParameter("passport", user.getPerson().getPassport());
-        return query.getSingleResult().getTickets();
     }
 }

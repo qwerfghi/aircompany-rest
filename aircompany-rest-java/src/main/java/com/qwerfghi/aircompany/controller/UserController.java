@@ -1,7 +1,6 @@
 package com.qwerfghi.aircompany.controller;
 
 import com.qwerfghi.aircompany.entity.model.User;
-import com.qwerfghi.aircompany.entity.model.Ticket;
 import com.qwerfghi.aircompany.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,11 +26,6 @@ public class UserController {
     @PostMapping("/find")
     public User findByUsername(@RequestBody User user) {
         return userService.findByUsernameAndPassword(user.getUsername(), user.getPassword());
-    }
-
-    @PostMapping("/tickets")
-    public List<Ticket> getUserTickets(@RequestBody User user) {
-        return userService.getUserTickets(user);
     }
 
     @GetMapping

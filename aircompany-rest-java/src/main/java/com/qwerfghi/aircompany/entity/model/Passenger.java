@@ -6,7 +6,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.List;
 
 @Data
 @Entity
@@ -52,8 +51,4 @@ public class Passenger {
 
     @Column(name = "address_id", insertable = false, updatable = false)
     private Integer addressId;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "passenger")
-    private List<Ticket> tickets;
 }
