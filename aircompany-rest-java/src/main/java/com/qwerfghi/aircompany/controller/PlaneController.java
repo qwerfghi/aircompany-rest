@@ -1,6 +1,6 @@
 package com.qwerfghi.aircompany.controller;
 
-import com.qwerfghi.aircompany.entity.dto.PlaneDTO;
+import com.qwerfghi.aircompany.entity.model.Plane;
 import com.qwerfghi.aircompany.service.PlaneService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/planes")
 public class PlaneController {
+
     private final PlaneService planeService;
 
     @Autowired
@@ -18,18 +19,18 @@ public class PlaneController {
     }
 
     @GetMapping("/{id}")
-    public PlaneDTO getPlane(@PathVariable("id") int id) {
+    public Plane getPlane(@PathVariable("id") int id) {
         return planeService.getPlaneById(id);
     }
 
     @GetMapping
-    public List<PlaneDTO> getPlanes() {
+    public List<Plane> getPlanes() {
         return planeService.getAllPlanes();
     }
 
     @PostMapping
-    public void addPlane(@RequestBody PlaneDTO planeDTO) {
-        planeService.addPlane(planeDTO);
+    public void addPlane(@RequestBody Plane plane) {
+        planeService.addPlane(plane);
     }
 
     @DeleteMapping("/{id}")
@@ -38,8 +39,8 @@ public class PlaneController {
     }
 
     @PutMapping("/{id}")
-    public void updatePlane(@PathVariable("id") int id, @RequestBody PlaneDTO planeDTO) {
-        planeDTO.setPlaneId(id);
-        planeService.updatePlane(planeDTO);
+    public void updatePlane(@PathVariable("id") int id, @RequestBody Plane plane) {
+        plane.setPlaneId(id);
+        planeService.updatePlane(plane);
     }
 }

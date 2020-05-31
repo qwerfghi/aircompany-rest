@@ -1,7 +1,7 @@
 package com.qwerfghi.aircompany.service;
 
-import com.qwerfghi.aircompany.entity.dto.CountryDTO;
-import com.qwerfghi.aircompany.repository.dto.CountryDTORepository;
+import com.qwerfghi.aircompany.entity.model.Country;
+import com.qwerfghi.aircompany.repository.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,32 +11,33 @@ import java.util.List;
 @Service
 @Transactional
 public class CountryService {
-    private final CountryDTORepository countryDTORepository;
+
+    private final CountryRepository countryRepository;
 
     @Autowired
-    public CountryService(CountryDTORepository countryDTORepository) {
-        this.countryDTORepository = countryDTORepository;
+    public CountryService(CountryRepository countryRepository) {
+        this.countryRepository = countryRepository;
     }
 
     @Transactional(readOnly = true)
-    public CountryDTO getCountryById(String code) {
-        return countryDTORepository.findOne(code);
+    public Country getCountryById(String code) {
+        return countryRepository.findOne(code);
     }
 
     @Transactional(readOnly = true)
-    public List<CountryDTO> getAllCountries() {
-        return countryDTORepository.findAll();
+    public List<Country> getAllCountries() {
+        return countryRepository.findAll();
     }
 
-    public void addCountry(CountryDTO countryDTO) {
-        countryDTORepository.save(countryDTO);
+    public void addCountry(Country country) {
+        countryRepository.save(country);
     }
 
     public void deleteCountry(String code) {
-        countryDTORepository.delete(code);
+        countryRepository.delete(code);
     }
 
-    public void updateCountry(CountryDTO countryDTO) {
-        countryDTORepository.save(countryDTO);
+    public void updateCountry(Country country) {
+        countryRepository.save(country);
     }
 }

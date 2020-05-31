@@ -1,7 +1,7 @@
 package com.qwerfghi.aircompany.service;
 
-import com.qwerfghi.aircompany.entity.dto.AddressDTO;
-import com.qwerfghi.aircompany.repository.dto.AddressDTORepository;
+import com.qwerfghi.aircompany.entity.model.Address;
+import com.qwerfghi.aircompany.repository.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,32 +11,33 @@ import java.util.List;
 @Service
 @Transactional
 public class AddressService {
-    private final AddressDTORepository addressDTORepository;
+
+    private final AddressRepository addressRepository;
 
     @Autowired
-    public AddressService(AddressDTORepository addressDTORepository) {
-        this.addressDTORepository = addressDTORepository;
+    public AddressService(AddressRepository addressRepository) {
+        this.addressRepository = addressRepository;
     }
 
     @Transactional(readOnly = true)
-    public AddressDTO getAddressById(int id) {
-        return addressDTORepository.findOne(id);
+    public Address getAddressById(int id) {
+        return addressRepository.findOne(id);
     }
 
     @Transactional(readOnly = true)
-    public List<AddressDTO> getAllAddresses() {
-        return addressDTORepository.findAll();
+    public List<Address> getAllAddresses() {
+        return addressRepository.findAll();
     }
 
-    public void addAddress(AddressDTO addressDTO) {
-        addressDTORepository.save(addressDTO);
+    public void addAddress(Address address) {
+        addressRepository.save(address);
     }
 
     public void deleteAddress(int id) {
-        addressDTORepository.delete(id);
+        addressRepository.delete(id);
     }
 
-    public void updateAddress(AddressDTO addressDTO) {
-        addressDTORepository.save(addressDTO);
+    public void updateAddress(Address address) {
+        addressRepository.save(address);
     }
 }

@@ -12,32 +12,32 @@ import java.util.List;
 @Transactional
 public class CityService {
 
-    private final CityRepository cityDTORepository;
+    private final CityRepository cityRepository;
 
     @Autowired
-    public CityService(CityRepository cityDTORepository) {
-        this.cityDTORepository = cityDTORepository;
+    public CityService(CityRepository cityRepository) {
+        this.cityRepository = cityRepository;
     }
 
     @Transactional(readOnly = true)
     public City getCityById(int id) {
-        return cityDTORepository.findOne(id);
+        return cityRepository.findOne(id);
     }
 
     @Transactional(readOnly = true)
     public List<City> getAllCities() {
-        return cityDTORepository.findAll();
+        return cityRepository.findAll();
     }
 
-    public void addCity(City cityDTO) {
-        cityDTORepository.save(cityDTO);
+    public void addCity(City city) {
+        cityRepository.save(city);
     }
 
     public void deleteCity(int id) {
-        cityDTORepository.delete(id);
+        cityRepository.delete(id);
     }
 
-    public void updateCity(City cityDTO) {
-        cityDTORepository.save(cityDTO);
+    public void updateCity(City city) {
+        cityRepository.save(city);
     }
 }

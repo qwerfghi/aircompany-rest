@@ -1,6 +1,6 @@
 package com.qwerfghi.aircompany.controller;
 
-import com.qwerfghi.aircompany.entity.dto.EmployeeDTO;
+import com.qwerfghi.aircompany.entity.model.Employee;
 import com.qwerfghi.aircompany.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/employees")
 public class EmployeeController {
+
     private final EmployeeService employeeService;
 
     @Autowired
@@ -18,18 +19,18 @@ public class EmployeeController {
     }
 
     @GetMapping("/{id}")
-    public EmployeeDTO getEmployee(@PathVariable("id") int id) {
+    public Employee getEmployee(@PathVariable("id") int id) {
         return employeeService.getEmployeeById(id);
     }
 
     @GetMapping
-    public List<EmployeeDTO> getEmployees() {
+    public List<Employee> getEmployees() {
         return employeeService.getAllEmployees();
     }
 
     @PostMapping
-    public void addEmployee(@RequestBody EmployeeDTO employeeDTO) {
-        employeeService.addEmployee(employeeDTO);
+    public void addEmployee(@RequestBody Employee employee) {
+        employeeService.addEmployee(employee);
     }
 
     @DeleteMapping("/{id}")
@@ -38,8 +39,8 @@ public class EmployeeController {
     }
 
     @PutMapping("/{id}")
-    public void updateEmployee(@PathVariable("id") int id, @RequestBody EmployeeDTO employeeDTO) {
-        employeeDTO.setEmployeeId(id);
-        employeeService.updateEmployee(employeeDTO);
+    public void updateEmployee(@PathVariable("id") int id, @RequestBody Employee employee) {
+        employee.setEmployeeId(id);
+        employeeService.updateEmployee(employee);
     }
 }

@@ -1,111 +1,54 @@
 package com.qwerfghi.aircompany.entity.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.qwerfghi.aircompany.entity.enums.Sex;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Date;
 
+@Data
 @Entity
 @Table(name = "passenger", schema = "aircompany")
 public class Passenger {
-    private Integer passengerId;
-    private String name;
-    private String lastName;
-    private Sex sex;
-    private Date birthdate;
-    private String passport;
-    private String phone;
-    private Country country;
-    private Address address;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "passenger_id")
-    public Integer getPassengerId() {
-        return passengerId;
-    }
+    private Integer passengerId;
 
-    public void setPassengerId(Integer passengerId) {
-        this.passengerId = passengerId;
-    }
-
-    @Basic
     @Column(name = "name")
-    public String getName() {
-        return name;
-    }
+    private String name;
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Basic
     @Column(name = "last_name")
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+    private String lastName;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "sex")
-    public Sex getSex() {
-        return sex;
-    }
+    private Sex sex;
 
-    public void setSex(Sex sex) {
-        this.sex = sex;
-    }
-
-    @Basic
     @Column(name = "birthdate")
-    public Date getBirthdate() {
-        return birthdate;
-    }
+    private Date birthdate;
 
-    public void setBirthdate(Date birthdate) {
-        this.birthdate = birthdate;
-    }
-
-    @Basic
     @Column(name = "passport")
-    public String getPassport() {
-        return passport;
-    }
+    private String passport;
 
-    public void setPassport(String passport) {
-        this.passport = passport;
-    }
-
-    @Basic
     @Column(name = "phone")
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
+    private String phone;
 
     @OneToOne
     @JoinColumn(name = "country", foreignKey = @ForeignKey(name = "passenger_country_fk"))
-    public Country getCountry() {
-        return country;
-    }
+    @JsonIgnore
+    private Country country;
 
-    public void setCountry(Country country) {
-        this.country = country;
-    }
+    @Column(name = "country", insertable = false, updatable = false)
+    private String countryCode;
 
     @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "address_id", foreignKey = @ForeignKey(name = "passenger_address_fk"))
-    public Address getAddress() {
-        return address;
-    }
+    @JsonIgnore
+    private Address address;
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
+    @Column(name = "address_id", insertable = false, updatable = false)
+    private Integer addressId;
 }

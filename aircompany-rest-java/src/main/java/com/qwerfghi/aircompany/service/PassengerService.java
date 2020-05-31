@@ -1,7 +1,7 @@
 package com.qwerfghi.aircompany.service;
 
-import com.qwerfghi.aircompany.entity.dto.PassengerDTO;
-import com.qwerfghi.aircompany.repository.dto.PassengerDTORepository;
+import com.qwerfghi.aircompany.entity.model.Passenger;
+import com.qwerfghi.aircompany.repository.PassengerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,32 +11,33 @@ import java.util.List;
 @Service
 @Transactional
 public class PassengerService {
-    private final PassengerDTORepository passengerDTORepository;
+
+    private final PassengerRepository passengerRepository;
 
     @Autowired
-    public PassengerService(PassengerDTORepository passengerDTORepository) {
-        this.passengerDTORepository = passengerDTORepository;
+    public PassengerService(PassengerRepository passengerRepository) {
+        this.passengerRepository = passengerRepository;
     }
 
     @Transactional(readOnly = true)
-    public PassengerDTO getPassengerById(int id) {
-        return passengerDTORepository.findOne(id);
+    public Passenger getPassengerById(int id) {
+        return passengerRepository.findOne(id);
     }
 
     @Transactional(readOnly = true)
-    public List<PassengerDTO> getAllPassengers() {
-        return passengerDTORepository.findAll();
+    public List<Passenger> getAllPassengers() {
+        return passengerRepository.findAll();
     }
 
-    public void addPassenger(PassengerDTO passengerDTO) {
-        passengerDTORepository.save(passengerDTO);
+    public void addPassenger(Passenger passenger) {
+        passengerRepository.save(passenger);
     }
 
     public void deletePassenger(int id) {
-        passengerDTORepository.delete(id);
+        passengerRepository.delete(id);
     }
 
-    public void updatePassenger(PassengerDTO passengerDTO) {
-        passengerDTORepository.save(passengerDTO);
+    public void updatePassenger(Passenger passenger) {
+        passengerRepository.save(passenger);
     }
 }

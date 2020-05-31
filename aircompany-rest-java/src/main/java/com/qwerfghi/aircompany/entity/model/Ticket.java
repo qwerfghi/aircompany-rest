@@ -1,110 +1,52 @@
 package com.qwerfghi.aircompany.entity.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.qwerfghi.aircompany.entity.enums.TicketClass;
+import lombok.Data;
 
 import javax.persistence.*;
 
+@Data
 @Entity
 @Table(name = "ticket", schema = "aircompany")
 public class Ticket {
-    private Integer ticketId;
-    private Passenger passenger;
-    private TicketClass clazz;
-    private Boolean status;
-    private Boolean baggageAvailable;
-    private Boolean exchangeAvailable;
-    private Boolean returnAvailable;
-    private Migration migration;
-    private Integer cost;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ticket_id")
-    public Integer getTicketId() {
-        return ticketId;
-    }
-
-    public void setTicketId(Integer ticketId) {
-        this.ticketId = ticketId;
-    }
+    private Integer ticketId;
 
     @ManyToOne
     @JoinColumn(name = "passenger_id", foreignKey = @ForeignKey(name = "ticket_passenger_fk"))
-    public Passenger getPassenger() {
-        return passenger;
-    }
+    private Passenger passenger;
 
-    public void setPassenger(Passenger passenger) {
-        this.passenger = passenger;
-    }
+    @Column(name = "passenger_id", insertable = false, updatable = false)
+    private Integer passengerId;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "class")
-    public TicketClass getClazz() {
-        return clazz;
-    }
+    private TicketClass clazz;
 
-    public void setClazz(TicketClass clazz) {
-        this.clazz = clazz;
-    }
-
-    @Basic
     @Column(name = "status")
-    public Boolean getStatus() {
-        return status;
-    }
+    private Boolean status;
 
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
-
-    @Basic
     @Column(name = "baggage_available")
-    public Boolean getBaggageAvailable() {
-        return baggageAvailable;
-    }
+    private Boolean baggageAvailable;
 
-    public void setBaggageAvailable(Boolean baggageAvailable) {
-        this.baggageAvailable = baggageAvailable;
-    }
-
-    @Basic
     @Column(name = "exchange_available")
-    public Boolean getExchangeAvailable() {
-        return exchangeAvailable;
-    }
+    private Boolean exchangeAvailable;
 
-    public void setExchangeAvailable(Boolean exchangeAvailable) {
-        this.exchangeAvailable = exchangeAvailable;
-    }
-
-    @Basic
     @Column(name = "return_available")
-    public Boolean getReturnAvailable() {
-        return returnAvailable;
-    }
-
-    public void setReturnAvailable(Boolean returnAvailable) {
-        this.returnAvailable = returnAvailable;
-    }
+    private Boolean returnAvailable;
 
     @ManyToOne
     @JoinColumn(name = "migration_id", foreignKey = @ForeignKey(name = "ticket_migration_fk"))
-    public Migration getMigration() {
-        return migration;
-    }
+    @JsonIgnore
+    private Migration migration;
 
-    public void setMigration(Migration migration) {
-        this.migration = migration;
-    }
+    @Column(name = "migration_id", insertable = false, updatable = false)
+    private Integer migrationId;
 
-    @Basic
     @Column(name = "cost")
-    public Integer getCost() {
-        return cost;
-    }
-
-    public void setCost(Integer cost) {
-        this.cost = cost;
-    }
+    private Integer cost;
 }

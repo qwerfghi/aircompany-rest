@@ -1,6 +1,6 @@
 package com.qwerfghi.aircompany.controller;
 
-import com.qwerfghi.aircompany.entity.dto.MigrationDTO;
+import com.qwerfghi.aircompany.entity.model.Migration;
 import com.qwerfghi.aircompany.service.MigrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/migrations")
 public class MigrationController {
+
     private final MigrationService migrationService;
 
     @Autowired
@@ -18,18 +19,18 @@ public class MigrationController {
     }
 
     @GetMapping("/{id}")
-    public MigrationDTO getMigration(@PathVariable("id") int id) {
+    public Migration getMigration(@PathVariable("id") int id) {
         return migrationService.getMigrationById(id);
     }
 
     @GetMapping
-    public List<MigrationDTO> getMigrations() {
+    public List<Migration> getMigrations() {
         return migrationService.getAllMigrations();
     }
 
     @PostMapping
-    public void addMigration(@RequestBody MigrationDTO migrationDTO) {
-        migrationService.addMigration(migrationDTO);
+    public void addMigration(@RequestBody Migration migration) {
+        migrationService.addMigration(migration);
     }
 
     @DeleteMapping("/{id}")
@@ -38,8 +39,8 @@ public class MigrationController {
     }
 
     @PutMapping("/{id}")
-    public void updateMigration(@PathVariable("id") int id, @RequestBody MigrationDTO migrationDTO) {
-        migrationDTO.setMigrationId(id);
-        migrationService.updateMigration(migrationDTO);
+    public void updateMigration(@PathVariable("id") int id, @RequestBody Migration migration) {
+        migration.setMigrationId(id);
+        migrationService.updateMigration(migration);
     }
 }

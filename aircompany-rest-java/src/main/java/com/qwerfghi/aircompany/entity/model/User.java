@@ -1,66 +1,36 @@
 package com.qwerfghi.aircompany.entity.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.qwerfghi.aircompany.entity.enums.UserRole;
+import lombok.Data;
 
 import javax.persistence.*;
 
+@Data
 @Entity
 @Table(name = "user", schema = "aircompany")
 public class User {
-    private Integer userId;
-    private String username;
-    private String password;
-    private UserRole userRole;
-    private Person person;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    public Integer getUserId() {
-        return userId;
-    }
+    private Integer userId;
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
-    @Basic
     @Column(name = "username")
-    public String getUsername() {
-        return username;
-    }
+    private String username;
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    @Basic
     @Column(name = "password")
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    private String password;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "user_role")
-    public UserRole getUserRole() {
-        return userRole;
-    }
-
-    public void setUserRole(UserRole userRole) {
-        this.userRole = userRole;
-    }
+    private UserRole userRole;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", foreignKey = @ForeignKey(name = "user_person_fk"))
-    public Person getPerson() {
-        return person;
-    }
+    @JsonIgnore
+    private Person person;
 
-    public void setPerson(Person person) {
-        this.person = person;
-    }
+    @Column(name = "person_id", insertable = false, updatable = false)
+    private Integer personId;
 }
