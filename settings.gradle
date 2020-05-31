@@ -1,1 +1,3 @@
 rootProject.name = 'aircompany-rest'
+include 'aircompany-rest-java'
+//include 'aircompany-rest-kotlin'
