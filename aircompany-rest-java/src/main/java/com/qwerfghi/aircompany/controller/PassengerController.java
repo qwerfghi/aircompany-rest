@@ -4,8 +4,11 @@ import com.qwerfghi.aircompany.entity.model.Passenger;
 import com.qwerfghi.aircompany.service.PassengerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController
 @RequestMapping("/passengers")
@@ -20,7 +23,7 @@ public class PassengerController {
 
     @GetMapping("/{id}")
     public Passenger getPassenger(@PathVariable("id") int id) {
-        return passengerService.getPassengerById(id);
+        return passengerService.getPassengerById(id).orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Unable to find passenger by specified passenger id"));
     }
 
     @GetMapping

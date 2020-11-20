@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -20,8 +21,8 @@ public class MigrationService {
     }
 
     @Transactional(readOnly = true)
-    public Migration getMigrationById(int id) {
-        return migrationRepository.findOne(id);
+    public Optional<Migration> getMigrationById(int id) {
+        return migrationRepository.findById(id);
     }
 
     @Transactional(readOnly = true)
@@ -34,7 +35,7 @@ public class MigrationService {
     }
 
     public void deleteMigration(int id) {
-        migrationRepository.delete(id);
+        migrationRepository.deleteById(id);
     }
 
     public void updateMigration(Migration migration) {

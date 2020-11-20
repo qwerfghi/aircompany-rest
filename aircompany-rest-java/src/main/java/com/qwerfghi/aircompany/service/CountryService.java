@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -20,8 +21,8 @@ public class CountryService {
     }
 
     @Transactional(readOnly = true)
-    public Country getCountryById(String code) {
-        return countryRepository.findOne(code);
+    public Optional<Country> getCountryById(String code) {
+        return countryRepository.findById(code);
     }
 
     @Transactional(readOnly = true)
@@ -34,7 +35,7 @@ public class CountryService {
     }
 
     public void deleteCountry(String code) {
-        countryRepository.delete(code);
+        countryRepository.deleteById(code);
     }
 
     public void updateCountry(Country country) {

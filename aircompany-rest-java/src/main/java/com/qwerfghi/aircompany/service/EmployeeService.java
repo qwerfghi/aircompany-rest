@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -20,8 +21,8 @@ public class EmployeeService {
     }
 
     @Transactional(readOnly = true)
-    public Employee getEmployeeById(int id) {
-        return employeeRepository.findOne(id);
+    public Optional<Employee> getEmployeeById(int id) {
+        return employeeRepository.findById(id);
     }
 
     @Transactional(readOnly = true)
@@ -34,7 +35,7 @@ public class EmployeeService {
     }
 
     public void deleteEmployee(int id) {
-        employeeRepository.delete(id);
+        employeeRepository.deleteById(id);
     }
 
     public void updateEmployee(Employee employee) {

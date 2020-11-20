@@ -4,8 +4,11 @@ import com.qwerfghi.aircompany.entity.model.Person;
 import com.qwerfghi.aircompany.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController
 @RequestMapping("/persons")
@@ -20,7 +23,8 @@ public class PersonController {
 
     @GetMapping("/{id}")
     public Person getPerson(@PathVariable("id") int id) {
-        return personService.getPersonById(id);
+        return personService.getPersonById(id)
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Unable to find person by specified person id"));
     }
 
     @GetMapping

@@ -4,8 +4,11 @@ import com.qwerfghi.aircompany.entity.model.Migration;
 import com.qwerfghi.aircompany.service.MigrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController
 @RequestMapping("/migrations")
@@ -20,7 +23,8 @@ public class MigrationController {
 
     @GetMapping("/{id}")
     public Migration getMigration(@PathVariable("id") int id) {
-        return migrationService.getMigrationById(id);
+        return migrationService.getMigrationById(id)
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Unable to find migration by specified migration id"));
     }
 
     @GetMapping

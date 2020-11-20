@@ -4,8 +4,11 @@ import com.qwerfghi.aircompany.entity.model.Ticket;
 import com.qwerfghi.aircompany.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController
 @RequestMapping("/tickets")
@@ -20,7 +23,8 @@ public class TicketController {
 
     @GetMapping("/{id}")
     public Ticket getTicket(@PathVariable("id") int id) {
-        return ticketService.getTicketById(id);
+        return ticketService.getTicketById(id)
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Unable to ticket city by specified ticket id"));
     }
 
     @GetMapping
@@ -50,7 +54,8 @@ public class TicketController {
     }
 
     @PostMapping("/buy")
-    public void buyTicket(@RequestBody Ticket ticket) {
-        ticketService.buyTicket(ticket);
+    public Ticket buyTicket(@RequestBody Ticket ticket) {
+        return ticketService.buyTicket(ticket)
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Unable to find user by specified user id"));
     }
 }

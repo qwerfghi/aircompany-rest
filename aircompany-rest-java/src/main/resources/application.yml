@@ -2,16 +2,14 @@ spring:
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/aircompany?autoReconnect=true&characterEncoding=utf8&useUnicode=true
     driver-class-name: com.mysql.jdbc.Driver
-    name: olabsenglishdb
+    name: aircompany
     username: root
     password: root
 
   jpa:
     database: mysql
-    database-platform: org.hibernate.dialect.MySQLDialect
     #property below don't work because of some reason, using logging.level.org.hibernate.SQL: DEBUG instead
     #show-sql: true
 
-server.contextPath: /aircompany
-
+server.servlet.context-path: /aircompany
 logging.level.org.hibernate.SQL: DEBUG

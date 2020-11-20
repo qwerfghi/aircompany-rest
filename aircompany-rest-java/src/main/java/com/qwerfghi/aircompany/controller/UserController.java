@@ -4,8 +4,11 @@ import com.qwerfghi.aircompany.entity.model.User;
 import com.qwerfghi.aircompany.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+
+import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController
 @RequestMapping("/users")
@@ -20,7 +23,8 @@ public class UserController {
 
     @GetMapping("/{id}")
     public User getUser(@PathVariable("id") int id) {
-        return userService.getUserById(id);
+        return userService.getUserById(id)
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Unable to find user by specified user id"));
     }
 
     @PostMapping("/find")
@@ -39,8 +43,9 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public void registerUser(@RequestBody User user) {
-        userService.registerNewUser(user);
+    public User registerUser(@RequestBody User user) {
+        return userService.registerNewUser(user)
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Unable to find country by specified country code"));
     }
 
     @DeleteMapping("/{id}")

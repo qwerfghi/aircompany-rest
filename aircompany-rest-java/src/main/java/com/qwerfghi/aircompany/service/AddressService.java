@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -20,8 +21,8 @@ public class AddressService {
     }
 
     @Transactional(readOnly = true)
-    public Address getAddressById(int id) {
-        return addressRepository.findOne(id);
+    public Optional<Address> getAddressById(int id) {
+        return addressRepository.findById(id);
     }
 
     @Transactional(readOnly = true)
@@ -34,7 +35,7 @@ public class AddressService {
     }
 
     public void deleteAddress(int id) {
-        addressRepository.delete(id);
+        addressRepository.deleteById(id);
     }
 
     public void updateAddress(Address address) {

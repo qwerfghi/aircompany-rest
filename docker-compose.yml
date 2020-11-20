@@ -1,0 +1,18 @@
+version: '3'
+services:
+  mysql:
+    image: 'mysql:8.0.22'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - 3306:3306
+    volumes:
+      - ./database-backup:/docker-entrypoint-initdb.d
+  aircompany-rest-java:
+    depends_on:
+      - mysql
+    build:
+      dockerfile: Dockerfile
+      context: ./aircompany-rest-java
+    ports:
+      - 8080:8080

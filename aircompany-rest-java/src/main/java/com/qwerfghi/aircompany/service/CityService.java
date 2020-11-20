@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -20,8 +21,8 @@ public class CityService {
     }
 
     @Transactional(readOnly = true)
-    public City getCityById(int id) {
-        return cityRepository.findOne(id);
+    public Optional<City> getCityById(int id) {
+        return cityRepository.findById(id);
     }
 
     @Transactional(readOnly = true)
@@ -34,7 +35,7 @@ public class CityService {
     }
 
     public void deleteCity(int id) {
-        cityRepository.delete(id);
+        cityRepository.deleteById(id);
     }
 
     public void updateCity(City city) {

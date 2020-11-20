@@ -1,7 +1,6 @@
 package com.qwerfghi.aircompany.service;
 
 import com.qwerfghi.aircompany.entity.enums.UserRole;
-import com.qwerfghi.aircompany.entity.model.Country;
 import com.qwerfghi.aircompany.entity.model.User;
 import com.qwerfghi.aircompany.repository.CountryRepository;
 import com.qwerfghi.aircompany.repository.UserRepository;
@@ -10,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -25,8 +25,8 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public User getUserById(int id) {
-        return userRepository.findOne(id);
+    public Optional<User> getUserById(int id) {
+        return userRepository.findById(id);
     }
 
     @Transactional(readOnly = true)
@@ -39,7 +39,7 @@ public class UserService {
     }
 
     public void deleteUser(int id) {
-        userRepository.delete(id);
+        userRepository.deleteById(id);
     }
 
     public void updateUser(User user) {
@@ -50,11 +50,12 @@ public class UserService {
         return userRepository.findByUsernameAndPassword(username, password);
     }
 
-    public void registerNewUser(User user) {
-        Country country = user.getPerson().getCountry();
-        Country persistCountry = countryRepository.findOne(country.getCode());
-        user.getPerson().setCountry(persistCountry);
+    public Optional<User> registerNewUser(User user) {
         user.setUserRole(UserRole.USER);
-        userRepository.save(user);
+        return countryRepository.findById(user.getPerson().getCountry().getCode())
+                .map(country -> {
+                    user.getPerson().setCountry(country);
+                    return userRepository.save(user);
+                });
     }
 }

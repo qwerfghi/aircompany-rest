@@ -1,7 +1,10 @@
 package com.qwerfghi.aircompany.service;
 
 import com.qwerfghi.aircompany.entity.enums.TicketClass;
-import com.qwerfghi.aircompany.entity.model.*;
+import com.qwerfghi.aircompany.entity.model.Migration;
+import com.qwerfghi.aircompany.entity.model.Passenger;
+import com.qwerfghi.aircompany.entity.model.Person;
+import com.qwerfghi.aircompany.entity.model.Ticket;
 import com.qwerfghi.aircompany.repository.TicketRepository;
 import com.qwerfghi.aircompany.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,8 +34,8 @@ public class TicketService {
     }
 
     @Transactional(readOnly = true)
-    public Ticket getTicketById(int id) {
-        return ticketRepository.findOne(id);
+    public Optional<Ticket> getTicketById(int id) {
+        return ticketRepository.findById(id);
     }
 
     @Transactional(readOnly = true)
@@ -48,17 +48,19 @@ public class TicketService {
     }
 
     public void deleteTicket(int id) {
-        ticketRepository.delete(id);
+        ticketRepository.deleteById(id);
     }
 
     public void updateTicket(Ticket ticket) {
         ticketRepository.save(ticket);
     }
 
-    public void buyTicket(Ticket ticket) {
-        User user = userRepository.findOne(ticket.getPassenger().getPassengerId());
-        ticket.setPassenger(createPassengerByPerson(user.getPerson()));
-        ticketRepository.save(ticket);
+    public Optional<Ticket> buyTicket(Ticket ticket) {
+        return userRepository.findById(ticket.getPassenger().getPassengerId())
+                .map(user -> { //I'm not sure if it's ok to use map like this, but it seems to me quite elegant
+                    ticket.setPassenger(createPassengerByPerson(user.getPerson()));
+                    return ticketRepository.save(ticket);
+                });
     }
 
     @Transactional(readOnly = true)

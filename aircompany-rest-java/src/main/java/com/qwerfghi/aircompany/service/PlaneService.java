@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -20,8 +21,8 @@ public class PlaneService {
     }
 
     @Transactional(readOnly = true)
-    public Plane getPlaneById(int id) {
-        return planeRepository.findOne(id);
+    public Optional<Plane> getPlaneById(int id) {
+        return planeRepository.findById(id);
     }
 
     @Transactional(readOnly = true)
@@ -34,7 +35,7 @@ public class PlaneService {
     }
 
     public void deletePlane(int id) {
-        planeRepository.delete(id);
+        planeRepository.deleteById(id);
     }
 
     public void updatePlane(Plane plane) {
