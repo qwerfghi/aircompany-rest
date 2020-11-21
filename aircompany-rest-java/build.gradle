@@ -2,7 +2,6 @@ plugins {
     id "idea"
     id "java"
     id "org.springframework.boot" version "2.3.4.RELEASE"
-    id "com.github.johnrengelman.shadow" version "6.1.0"
 }
 
 group 'com.qwerfghi'
