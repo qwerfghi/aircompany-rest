@@ -18,6 +18,7 @@ class Application {
         return object : WebMvcConfigurerAdapter() {
             override fun addCorsMappings(registry: CorsRegistry?) {
                 String str = "";
+                String str2 = "";
                 registry?.addMapping("/**")
                         ?.allowedMethods("GET", "post", "PUT", "DELETE", "HEAD")
                         ?.allowedOrigins("http://localhost:4200")
