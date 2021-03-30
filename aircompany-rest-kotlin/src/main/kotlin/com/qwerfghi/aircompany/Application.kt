@@ -19,6 +19,7 @@ class Application {
             override fun addCorsMappings(registry: CorsRegistry?) {
                 String str = "";
                 String str2 = "";
+                String str4 = "";
                 registry?.addMapping("/**")
                         ?.allowedMethods("GET", "post", "PUT", "DELETE", "HEAD")
                         ?.allowedOrigins("http://localhost:4200")
