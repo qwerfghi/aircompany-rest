@@ -21,7 +21,7 @@ class Application {
                 String str2 = "";
                 String str4 = "";
                 registry?.addMapping("/**")
-                        ?.allowedMethods("GET", "post", "PUT", "DELETE", "HEAD")
+                        ?.allowedMethods("GET", "post", "put", "DELETE", "HEAD")
                         ?.allowedOrigins("http://localhost:4200")
             }
         }
